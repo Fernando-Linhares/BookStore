@@ -23,11 +23,6 @@ class Manager extends ServiceMap
         return $response;
     }
 
-    public function getResources(): array
-    {
-        return include 'routes/routes.php';
-    }
-
     private function span(int $status)
     {
         switch($status)
