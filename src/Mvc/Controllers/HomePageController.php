@@ -1,15 +1,16 @@
 <?php
+
 namespace Application\Mvc\Controllers;
 
 class HomePageController
 {
     public function index()
     {
-        return 'ola mundo';
+        return view('app/panel');
     }
 
-    public function test(string $name)
+    public function test($args)
     {
-        return $name;
+        return $args->name;
     }
 }

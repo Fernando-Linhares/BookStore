@@ -9,7 +9,7 @@ class MapRouter
 
     private string $action;
 
-    private ?string $args;
+    private $args;
 
     public function setController(string $controller)
     {
@@ -23,10 +23,10 @@ class MapRouter
 
     public function setRoute(string $url)
     {
-        $this->route = new Url($url);
+        $this->route = new Url($url);     
     }
 
-    public function setArgs(?string $args)
+    public function setArgs($args)
     {
         $this->args = $args;
     }
@@ -48,6 +48,6 @@ class MapRouter
 
     public function getArgs()
     {
-        return $this->args;
+        return $this->route->getArgs($_SERVER['REQUEST_URI']);
     }
 }

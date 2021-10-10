@@ -1,16 +1,16 @@
 <?php
 
-
-function route(string $route, array $param): string
+function view(string $name,$data=null)
 {
-    $url = new Application\Main\Routing\Url($route);
-    $url->addParm($param);
-    return $url;
+    $views = new Application\Mvc\View\ViewLable;
+    $views->setView($name)->with($data)->render();
+    die;
 }
 
-function query_string($route)
+function regex(string $pattern, string $place)
 {
-    $url = new Application\Main\Routing\Url($route);
+    if(preg_match('/'.$pattern.'/i',$place, $result))
+        return current($result);
 
-    return $url->queryString()->get();
+    return false;
 }

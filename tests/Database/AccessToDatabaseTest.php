@@ -1,5 +1,5 @@
 <?php
-namespace Tests;
+namespace Tests\Database;
 
 use PHPUnit\Framework\TestCase as TestBase;
 use Application\Database\AccessToDatabase;
@@ -48,7 +48,7 @@ class AccessToDatabaseTest extends TestBase
     }
 
     /**
-     * @test
+     * 
      */
     public function createDataFromDatabase(): void
     {

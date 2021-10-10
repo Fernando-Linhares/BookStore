@@ -1,6 +1,8 @@
 <?php
 namespace Application\Main\Routing;
 
+use Application\Main\Routing\Argument;
+
 trait BaseRouter
 {
     public function getUri()
@@ -8,14 +10,17 @@ trait BaseRouter
         return $_SERVER['REQUEST_URI'];
     }
 
-    public function getValidRoute(string $route): bool
+    public function getValidRoute(Url $route): bool
     {
-        return $this->getUri() === $route;
+        if(!preg_match('/'.$route->getPlaceHolders().'/i', $this->getUri()))
+            return false;
+
+        return true;
     }
 
-    public function callActionWithArgs(object $controller,string $action, ...$args)
+    public function callActionWithArgs(object $controller,string $action, $args)
     {
-        return $controller->$action(...$args);
+        return $controller->$action((object) ($args[0]));
     }
 
     public function callAction(object $controller, string $action)

@@ -2,10 +2,38 @@
 
 namespace Application\Mvc\View;
 
-trait ViewLable
+class ViewLable
 {
-    public function view(string $name): string
+    public string $content;
+
+    private string $viewname;
+
+    public function setView(string $name): self
     {
-        return file_get_contents('views/'.$name.'-view.php');
+        $this->viewname = '../views/'.$name.'-view.php';
+        return $this;
     }
+
+    public function getView(): string
+    {
+        return $this->viewname;
+    }
+
+    public function render(): self
+    {
+        $this->content = include $this->getView();
+        return $this;
+    }
+
+    public function with($data): self
+    {
+        $this->data = new DataView($data);
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->content;
+    }
+
 }

@@ -32,7 +32,7 @@ class Router
                     $component->getArgs()
                 );
             }
-
+        
         return $this->callAction(
             $this->getInstance($component->getController()),
             $component->getAction()
@@ -41,6 +41,7 @@ class Router
 
     public function getInstance($instance)
     {
+
         if(is_array($instance))
             return $this->container->get($instance[0])->build(...$instance[1]);
         
