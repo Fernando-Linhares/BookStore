@@ -9,8 +9,10 @@ function view(string $name,$data=null)
 
 function regex(string $pattern, string $place)
 {
-    if(preg_match('/'.$pattern.'/i',$place, $result))
-        return current($result);
+    return preg_match('/'.$pattern.'/i',$place, $result) === 1;
+}
 
-    return false;
+function request(?string $name)
+{
+    return (object) $_REQUEST[$name];
 }
