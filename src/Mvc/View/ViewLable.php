@@ -2,8 +2,9 @@
 
 namespace Application\Mvc\View;
 
-class ViewLable
+class ViewLable extends BaseView
 {
+
     public string $content;
 
     private string $viewname;
@@ -27,7 +28,7 @@ class ViewLable
 
     public function with($data): self
     {
-        $this->data = new DataView($data);
+        $this->data = (object) $data;
         return $this;
     }
 

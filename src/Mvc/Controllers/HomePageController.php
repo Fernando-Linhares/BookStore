@@ -11,6 +11,6 @@ class HomePageController
 
     public function test($args)
     {
-        return $args->name;
+        return view('app/panel',['name'=>$args->name]);
     }
 }

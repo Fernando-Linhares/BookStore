@@ -8,5 +8,6 @@
 </head>
 <body>
     <h1>eu sou o painel</h1>
+    <?= $this->data->name ?>
 </body>
 </html>
