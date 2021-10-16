@@ -3,13 +3,14 @@ namespace Application\Database;
 
 use PDOStatement;
 use PDO;
+use PDOException;
 
 class AccessToDatabase
 {
     private PDO $pdo;
     private QueryBuilder $queryBuilder;
 
-    public function __construct(string $table)
+    public function __construct(?string $table)
     {
         $this->pdo = new PDO(
             "pgsql:host=localhost; port=5432; dbname=".DATABASE.';',
@@ -17,6 +18,10 @@ class AccessToDatabase
             PASSWORD,
             OPTIONS
         );
+
+        if(is_null($table))
+            $table = 'postgres';
+    
         $this->queryBuilder = new QueryBuilder($table);
     }
 
@@ -55,7 +60,7 @@ class AccessToDatabase
         );
     }
 
-    public function resolve(PDOStatement $statement): bool
+    private function resolve(PDOStatement $statement): bool
     {
         if($statement->execute())
             return true;
@@ -63,9 +68,35 @@ class AccessToDatabase
         return false;
     }
 
+    private function drop(string $table)
+    {
+        return $this->pdo->query('DROP TABLE '.$table);
+    }
+
+    public function migrate(object $migration)
+    {
+        try{
+            $query = $migration->up();
+
+            if($this->pdo->query((string) $query))
+                return true;
+            
+        }catch(PDOException $e)
+        {
+            $error = $e->getMessage();
+    
+            if(is_match('SQLSTATE\[42P07\]', $error)){
+                echo "\033[38;2;255;255;0m dropping table ..\033[0m". PHP_EOL;
+                $this->drop($query->getTable());
+                echo "\033[38;2;0;102;0m table dropped \033[0m".PHP_EOL;
+                if($this->pdo->query((string) $query))
+                    return true;
+            }
+        }
+    }
+
     public function __destruct()
     {
         unset($this->pdo);
     }
-
 }

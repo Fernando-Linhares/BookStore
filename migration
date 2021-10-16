@@ -1,0 +1,55 @@
+#!/usr/bin/php
+<?php
+
+use PHPUnit\TextUI\CliArguments\Configuration;
+
+$migration  = trim($argv[1]);
+$filename  = 'database/Migrations/'.ucfirst($migration).'Migration.php';
+$content = template($migration);
+if(
+    file_put_contents($filename,$content) 
+    && configure($filename)
+)
+    die("\033[38;2;0;102;0m  migration created successfully \033[0m\n");
+else
+    echo die('error');
+
+function template(&$table): string
+{
+    $tempstring = '<?php
+
+namespace Database\Migrations;
+
+use Application\Database\Migrations\Migration;
+
+class '.ucfirst($table).'Migration extends Migration
+{
+
+    public function up()
+    {
+        //implements here your schema
+        return $this->table("'.$table.'")
+        ->id()
+        ->create();
+    }
+
+    public function down()
+    {
+        //drop here your schema
+        return;
+    }
+}
+    ';
+    return $tempstring;
+}
+
+function configure($name)
+{
+    $path = 'config/migrations.php';
+    $namespace =str_replace('/','\\',ucfirst(substr($name,0,-4)));
+    $filecontent = file_get_contents($path);
+    
+    $content = substr($filecontent,0,-3) . "\n\t$namespace::class,\n];";
+
+    return file_put_contents($path,$content);
+}

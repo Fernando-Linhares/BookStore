@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '89972406a894416f7a487858ac385c27c057b3a3',
+        'reference' => '304b9e648df05400bce1d674508b517a7690d5a8',
         'name' => 'fernando/book-store',
         'dev' => true,
     ),
@@ -20,12 +20,12 @@
             'dev_requirement' => false,
         ),
         'fernando/book-store' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '89972406a894416f7a487858ac385c27c057b3a3',
+            'reference' => '304b9e648df05400bce1d674508b517a7690d5a8',
             'dev_requirement' => false,
         ),
         'myclabs/deep-copy' => array(

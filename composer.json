@@ -5,9 +5,11 @@
     "autoload": {
         "psr-4": {
             "Application\\": "src/",
-            "Tests\\":"tests/"
+            "Tests\\":"tests/",
+            "Database\\":"database/"
         }
     },
+
     "authors": [
         {
             "name": "Fernando Linhares Silvestre",

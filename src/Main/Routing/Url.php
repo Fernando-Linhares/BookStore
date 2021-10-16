@@ -2,6 +2,7 @@
 
 namespace Application\Main\Routing;
 
+
 class Url
 {
     private string $content;
@@ -16,20 +17,24 @@ class Url
         return $this->content;
     }
 
+    public function toComp()
+    {
+        return substr($this->content,1);
+    }
+
     public function getPlaceHolders()
     {
         $route = $this->content;
 
         foreach($this->getTabs($route) as $tabs)
-        {
             $fulltabs[] = $this->hasKey($tabs) ? '[a-z0-9\-\_]+': $tabs ;
-        }
+        
         return implode('\/',$fulltabs);
     }
 
     public function hasKey(string $tab)
     {
-        if(preg_match('/\{[a-z0-9\-\_]+\}/', $tab)) return true;
+        if(is_match('\{[a-z0-9\-\_]+\}', $tab)) return true;   
     }
 
     public function hasParms()

@@ -1,0 +1,10 @@
+#!/usr/bin/php
+<?php
+echo "\033[38;2;80;255;0m MIGRATE FROM DATABASE ---";
+
+require 'helpers/helpers.php';
+require 'config/config.php';
+require "vendor/autoload.php";
+foreach(require 'config/migrations.php' as $migration){
+    migrate($migration);
+}

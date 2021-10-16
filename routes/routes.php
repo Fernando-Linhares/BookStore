@@ -1,13 +1,12 @@
 <?php
 
 return [
-    '/home'=>[
-        \Application\Mvc\Controllers\HomePageController::class,
-        'index',
-    ],
-
-    '/testing/{name}'=>[
+    '/testing'=>[
         \Application\Mvc\Controllers\HomePageController::class,
         'test'
-    ]
+    ],
+    '/'=>[
+        \Application\Mvc\Controllers\HomePageController::class,
+        'index'
+    ],
 ];

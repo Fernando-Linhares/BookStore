@@ -6,10 +6,7 @@ require __DIR__.'/../helpers/helpers.php';
 require __DIR__.'/../routes/routes.php';
 
 use Application\Main\MvcApp as Kernel;
+use Application\Mvc\View\CardsComponent;
+use Application\Mvc\View\ViewLable;
 
-echo Kernel::render();
-
-// use Application\Main\Routing\Url;
-
-// $url = new Url('/ola/{name}');
-// var_dump($url->getArgs('/ola/fernando'));
+Kernel::render();

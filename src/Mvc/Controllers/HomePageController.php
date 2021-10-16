@@ -4,13 +4,14 @@ namespace Application\Mvc\Controllers;
 
 class HomePageController
 {
+
     public function index()
     {
         return view('app/panel');
     }
 
-    public function test($args)
+    public function test()
     {
-        return view('app/panel',['name'=>$args->name]);
+        return 'ola';
     }
 }

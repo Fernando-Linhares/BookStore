@@ -61,7 +61,7 @@
     address_id INT NOT NULL,
     FOREIGN KEY (to_pay_id)
     REFERENCES to_pay (id),
-    FOREIGN KEY (address_id)
+     FOREIGN KEY (address_id)
     REFERENCES address (id),
     PRIMARY KEY (id)
 );

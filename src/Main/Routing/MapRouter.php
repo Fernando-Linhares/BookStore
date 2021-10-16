@@ -31,6 +31,11 @@ class MapRouter
         $this->args = $args;
     }
 
+    public function getArgs()
+    {
+        return $this->args;
+    }
+
       public function getController()
     {
         return $this->controller;
@@ -44,10 +49,5 @@ class MapRouter
     public function getRoute()
     {
         return $this->route;
-    }
-
-    public function getArgs()
-    {
-        return $this->route->getArgs($_SERVER['REQUEST_URI']);
     }
 }

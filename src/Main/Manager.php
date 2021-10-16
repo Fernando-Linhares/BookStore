@@ -15,7 +15,7 @@ class Manager extends ServiceMap
     {
        $router = new Routing\Router(new ContainerService);
 
-       $response = $router->getRouting($this->getRoutesMapped());
+        $response = $router->getRouting($this->getRoutesMapped());
 
        if(!$response)
             return $this->span(404);

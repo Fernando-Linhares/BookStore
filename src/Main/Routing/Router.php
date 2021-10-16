@@ -17,6 +17,7 @@ class Router
 
     public function getRouting(array $routes)
     {
+      
         foreach($routes as $route)
             if($this->getValidRoute($route->getRoute())) return $this->calls($route);
         

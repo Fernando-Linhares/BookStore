@@ -12,15 +12,12 @@ trait BaseRouter
 
     public function getValidRoute(Url $route): bool
     {
-        if(!preg_match('/'.$route->getPlaceHolders().'/i', $this->getUri()))
-            return false;
-
-        return true;
+        return is_match($route->getPlaceHolders(), $this->getUri());
     }
 
     public function callActionWithArgs(object $controller,string $action, $args)
     {
-        return $controller->$action((object) ($args[0]));
+        return $controller->$action((object) ($args));
     }
 
     public function callAction(object $controller, string $action)

@@ -2,11 +2,16 @@
 
 namespace Application\Mvc\View;
 
-class ViewLable extends BaseView
+class ViewLable
 {
+    private const DEPENDECES = [
+        FrontEnd::BOOTSTRAP,
+        FrontEnd::JS,
+        FrontEnd::CSS
+    ];
 
     public string $content;
-
+    public string $title;
     private string $viewname;
 
     public function setView(string $name): self
@@ -20,10 +25,10 @@ class ViewLable extends BaseView
         return $this->viewname;
     }
 
-    public function render(): self
+    public function render()
     {
         $this->content = include $this->getView();
-        return $this;
+        return;
     }
 
     public function with($data): self
@@ -32,9 +37,24 @@ class ViewLable extends BaseView
         return $this;
     }
 
+    public function include(string $name)
+    {
+        include '../views/'.$name.'-view.php';
+    }
+
+    public function getComponent(ContractComponent $component)
+    {
+        return $component->render();
+    }
+
+    public function getDependences()
+    {
+        foreach(self::DEPENDECES as $dependences)
+            echo $dependences;
+    }
+
     public function __toString()
     {
         return $this->content;
     }
-
 }
