@@ -26,9 +26,28 @@ abstract class Migration
         return $this;
     }
 
+    public function boolean(string $col)
+    {
+        $this->query .= "$col BOOLEAN NOT NULL,";
+        return $this;
+    }
+
+    public function text(string $col)
+    {
+        $this->query .= "$col TEXT NOT NULL,";
+        return $this;
+    }
+
+    public function timestamp(string $col)
+    {
+        $this->query .= "$col TIMESTAMP NOT NULL,";
+        return $this;
+    }
+
     public function string(string $col, ?int $len=null)
     {
-        $this->query .= "$col VARCHAR(".$len?(string)$len:'255'.") NOT NULL,";
+        $value = is_null($len) ? '255' : (string) $len;
+        $this->query .= "$col VARCHAR($value)NOT NULL,";
         return $this;
     }
 
@@ -74,6 +93,10 @@ abstract class Migration
            $table = substr($table,0,-1);
            $table .= 'ies';
         }
+        else{
+            $table .= 's';
+        }
+    
         $this->query .= "FOREIGN KEY ($foreignkey) REFERENCES $table (id),";
         return $this;
     }

@@ -1,0 +1,10 @@
+#!/usr/bin/php
+<?php
+
+require 'src/helpers/helpers.php';
+require 'config/config.php';
+require 'vendor/autoload.php';
+
+$migrations = require 'config/migrations.php';
+
+call_down(end($migrations));

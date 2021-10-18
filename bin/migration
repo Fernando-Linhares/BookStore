@@ -1,8 +1,6 @@
 #!/usr/bin/php
 <?php
 
-use PHPUnit\TextUI\CliArguments\Configuration;
-
 $migration  = trim($argv[1]);
 $filename  = 'database/Migrations/'.ucfirst($migration).'Migration.php';
 $content = template($migration);

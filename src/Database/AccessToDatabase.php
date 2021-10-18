@@ -10,7 +10,7 @@ class AccessToDatabase
     private PDO $pdo;
     private QueryBuilder $queryBuilder;
 
-    public function __construct(?string $table)
+    public function __construct(?string $table=null)
     {
         $this->pdo = new PDO(
             "pgsql:host=localhost; port=5432; dbname=".DATABASE.';',
@@ -62,10 +62,7 @@ class AccessToDatabase
 
     private function resolve(PDOStatement $statement): bool
     {
-        if($statement->execute())
-            return true;
-    
-        return false;
+        return $statement->execute();
     }
 
     private function drop(string $table)
@@ -77,9 +74,8 @@ class AccessToDatabase
     {
         try{
             $query = $migration->up();
-
-            if($this->pdo->query((string) $query))
-                return true;
+    
+            if($this->pdo->query((string) $query)) return true;
             
         }catch(PDOException $e)
         {
@@ -91,7 +87,17 @@ class AccessToDatabase
                 echo "\033[38;2;0;102;0m table dropped \033[0m".PHP_EOL;
                 if($this->pdo->query((string) $query))
                     return true;
+            }else{
+                echo $error . PHP_EOL;
             }
+        }
+    }
+
+    public function rollBack($instance)
+    {
+       if($this->drop($instance->down())){
+            echo "\033[38;2;255;255;0m dropping table ..\033[0m". PHP_EOL;
+            echo "\033[38;2;0;102;0m table dropped \033[0m".PHP_EOL;
         }
     }
 

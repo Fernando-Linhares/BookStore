@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\BookStoreLibs;
+namespace Application\Regex;
 
 class Regex
 {
@@ -31,5 +31,11 @@ class Regex
     public function is_match(): bool
     {
         return preg_match($this->getPattern(), $this->getInput());
+    }
+
+    public function getResult()
+    {
+        preg_match($this->getPattern(), $this->getInput(), $result);
+        return current($result);
     }
 }

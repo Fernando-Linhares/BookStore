@@ -1,12 +1,7 @@
 <?php
 
 return [
-    '/testing'=>[
-        \Application\Mvc\Controllers\HomePageController::class,
-        'test'
-    ],
     '/'=>[
-        \Application\Mvc\Controllers\HomePageController::class,
-        'index'
+        \App\Controllers\HomeController::class, 'index'
     ],
 ];

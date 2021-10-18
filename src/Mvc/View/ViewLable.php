@@ -16,7 +16,7 @@ class ViewLable
 
     public function setView(string $name): self
     {
-        $this->viewname = '../views/'.$name.'-view.php';
+        $this->viewname = '../app/views/'.$name.'-view.php';
         return $this;
     }
 
@@ -39,7 +39,7 @@ class ViewLable
 
     public function include(string $name)
     {
-        include '../views/'.$name.'-view.php';
+        include '../app/views/'.$name.'-view.php';
     }
 
     public function getComponent(ContractComponent $component)

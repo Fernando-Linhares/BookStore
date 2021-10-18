@@ -1,0 +1,42 @@
+#!/usr/bin/php
+<?php
+require "src/helpers/helpers.php";
+
+$input = $argv[1];
+
+switch($input)
+{
+    case 'migrate':
+        $command = 'php bin/migrate';
+    break;
+    case 'migration':
+        $command = "php bin/migration {$argv[2]}";
+    break;
+    case 'server':
+        $command = 'php bin/server ';
+    break;
+    case 'test':
+        $command = 'php bin/test';
+    break;
+    case 'rollback':
+        $command = 'php bin/rollback';
+    break;
+    case 'seeder':
+        $command = "php bin/seeder {$argv[2]}";
+    break;
+    case 'seed':
+        $command = 'php bin/seed';
+    break;
+    case 'up':
+        $command = 'php bin/seed; php bin/migrate';
+    break;
+    case 'both':
+        $command = "php bin/seeder {$argv[2]};php bin/migration {$argv[2]}";
+    break;
+    default:
+        throw new Exception('error code '.$argv[1].' is not expected');
+    break;
+}
+
+
+shell_exec($command);
