@@ -15,12 +15,10 @@ class Manager extends ServiceMap
     {
        $router = new Routing\Router(new ContainerService);
 
-        $response = $router->getRouting($this->getRoutesMapped());
+       $router->getRouting($this->getRoutesMapped());
 
-       if(!$response)
-            return $this->span(404);
-
-        return $response;
+        if(http_response_code()==404)
+            die($this->span(404));
     }
 
     private function span(int $status)

@@ -1,6 +1,7 @@
 <?php
 namespace Application\Database;
 
+use Application\Database\Fetcher\Fetch;
 use PDOStatement;
 use PDO;
 use PDOException;
@@ -25,20 +26,30 @@ class AccessToDatabase
         $this->queryBuilder = new QueryBuilder($table);
     }
 
+    public function find(int $id)
+    {
+        $query = $this->queryBuilder->select("*")->where('id=:id');
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        $fetch = new Fetch($statement);
+        return $fetch->fetchOne();
+    }
+
     public function delete(int $id): bool
     {
-        $query = $this->queryBuilder->delete('?');
+        $query = $this->queryBuilder->delete(':id');
         $statement = $this->pdo->prepare($query);
-        $statement->bindParam(1, $id, PDO::PARAM_INT);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
         return $this->resolve($statement());
     }
 
-    public function all(): array
+    public function all(string $classname): array
     {
         $query = $this->queryBuilder->select('*');
-        $statement = $this->pdo->prepare($query);
-        $statement->execute();
-        return $statement->fetchAll();
+        $statement = $this->pdo->query($query);
+        $fetch = new Fetch($statement);
+        return $fetch->fetchClass($classname);
     }
 
     public function update(string $col, string $row, int $id): bool

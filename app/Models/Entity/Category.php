@@ -11,9 +11,4 @@ class Category extends BaseModel
     public string $name;
 
     public string $table = 'categories';
-
-    public function __construct(string $name)
-    {
-        $this->name = $name;
-    }
 }

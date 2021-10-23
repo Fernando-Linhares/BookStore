@@ -3,50 +3,39 @@ namespace Application\Mvc\View;
 
 class Component
 {
-    private array $tagname;
     private string $tag = '';
 
-    public function setClass(string $classname)
+    private array $attr;
+
+    private string $tagname;
+
+    private string $content;
+
+    public function __construct(string $content)
     {
-        $this->tag .= ' class="'.$classname.'">';
+        $this->content = $content;
+    }
+
+    public function tag($tagname)
+    {
+        $this->tagname = $tagname;
         return $this;
     }
 
-    public function setId(string $idname)
+    public function setAttr(array $attr)
     {
-        $this->tag .= ' id="'.$idname.'"';
+        $this->attr = $attr;
         return $this;
     }
 
-    public function setSrc(string $srcname)
+    public function generate()
     {
-        $this->tag .= ' src="'.$srcname.'">';
-        return $this;
-    }
-
-    public function startTag(string $tagname){
-        $this->tagname[] = $tagname;
-        $this->tag .= '<'.$tagname;
-        return $this;
-    }
-
-    public function setContent($content)
-    {
-            $this->tag .= $content;
-        return $this;
-    }
-    public function endTag()
-    {
-        $len = count($this->tagname);
-        if($len>1)
-            $this->tag .= '</'.$this->tagname[--$len].'>';
-        else
-            $this->tag .= '</'.current($this->tagname).'>';
+        $this->tag = "<{$this->tagname} {$this->attr[0]}=\"{$this->attr[1]}\">{$this->content}</{$this->tagname}>";
         return $this;
     }
 
     public function __toString()
     {
-        return $this->tag;
+        return $this->generate();
     }
 }

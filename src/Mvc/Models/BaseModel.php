@@ -9,19 +9,24 @@ abstract class BaseModel
 {
     public string $table;
 
-    private static AccessToDatabase $access;
-
     public function save()
     {
-        return $this->getAccessInstance()->create($this);
+        return $this->getAccessInstance($this->table)->create($this);
     }
 
-    public function getAccessInstance()
+    public function getAccessInstance($table)
     {
-        if(empty(self::$access))
-            self::$access = new AccessToDatabase($this->table);
-        
-        return self::$access;
+        return new AccessToDatabase($table);
+    }
+
+    public function all()
+    {
+        return $this->getAccessInstance($this->table)->all(get_class($this));
+    }
+
+    public function find(int $id)
+    {
+        return $this->getAccessInstance($this->table)->find($id);
     }
 
     public function make(\PDO $statemant)
@@ -36,7 +41,7 @@ abstract class BaseModel
         }
         return $app;
     }
-    
+
     public function load()
     {
         $loaded = new stdClass();
@@ -48,8 +53,6 @@ abstract class BaseModel
         $loaded->values = array_values($attrs);
         return $loaded;
     }
-
-
 
     public function getQueryBuilder(string $table)
     {

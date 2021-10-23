@@ -16,10 +16,4 @@ class Address extends BaseModel
 
     public string $table = 'address';
 
-    public function __construct(string $street, string $state, string $complement)
-    {
-        $this->street = $street;
-        $this->state = $state;
-        $this->complement = $complement;
-    }
 }

@@ -17,16 +17,4 @@ class Book extends BaseModel
 
     public string $table = 'books';
 
-    public function __construct(
-        string $title,
-        string $book_cover,
-        int $author_id,
-        string $published_at
-        )
-    {
-        $this->title = $title;
-        $this->book_cover = $book_cover;
-        $this->author_id = $author_id;
-        $this->published_at = $published_at;
-    }
 }

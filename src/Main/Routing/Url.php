@@ -5,64 +5,43 @@ namespace Application\Main\Routing;
 
 class Url
 {
-    private string $content;
+    private string $routeBase;
 
-    public function __construct(string $content)
+    public function __construct(string $routeBase)
     {
-        $this->content = $content;
+        $this->routeBase = $routeBase;
     }
 
-    public function getContent()
+    public function match(string $route)
     {
-        return $this->content;
+        $this->convertToRouteRegex($route);
+
+        return is_match($route, $this->routeBase);
     }
 
-    public function toComp()
+    public function convertToRouteRegex(string &$route): void
     {
-        return substr($this->content,1);
+        $tabs = explode('/',$route);
+        $tabs = array_map(function($tab){
+            if(is_match('\{[a-z0-9\-\_]+\}',$tab))
+                return '[a-z0-9]+';
+            return $tab;
+        }, $tabs);
+
+        $route = implode('\/',$tabs);
     }
 
-    public function getPlaceHolders()
+    public function getArgs(string $route)
     {
-        $route = $this->content;
+        $tabs = explode('/', $route);
+        $tabsbase = explode('/', $this->routeBase);
+        $len = count($tabsbase);
+        $clear = fn ($name)=>substr(substr($name,0,-1),1);
 
-        foreach($this->getTabs($route) as $tabs)
-            $fulltabs[] = $this->hasKey($tabs) ? '[a-z0-9\-\_]+': $tabs ;
-        
-        return implode('\/',$fulltabs);
-    }
-
-    public function hasKey(string $tab)
-    {
-        if(is_match('\{[a-z0-9\-\_]+\}', $tab)) return true;   
-    }
-
-    public function hasParms()
-    {
-        foreach($this->getTabs($this->content) as $tabs)
-            if($this->hasKey($tabs)) return true;
-        
-        return false;
-    }
-
-    public function getTabs(string $fulltabs)
-    {
-        return explode('/', $fulltabs);
-    }
-
-    public function getArgs($route)
-    {
-        $tab = explode('/',$route);
-       foreach($this->getTabs($this->content)as $key=>$tabs){
-           if($this->hasKey($tabs))
-             $args[] = [substr($tabs,1,-1) => $tab[$key]];
-       }
-       return $args;
-    }
-
-
-    public function __toString()
-    {
-        return $this->content;
+        for($i=0; $i<$len; $i++){
+            if(is_match('\{[a-z0-9\-\_]+\}',$tabs[$i]))
+                $tabresult[$clear($tabs[$i])] = $tabsbase[$i];
+        }
+        return (object) $tabresult;
     }
 }

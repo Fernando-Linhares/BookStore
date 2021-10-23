@@ -15,11 +15,4 @@ class RentalBook extends BaseModel
     public string $rental_date;
 
     public string $table = 'rental_book';
-
-    public function __construct(int $book_id, int $costumer_id, string $rental_date)
-    {
-        $this->book_id = $book_id;
-        $this->costumer_id = $costumer_id;
-        $this->rental_date = $rental_date;
-    }
 }

@@ -7,6 +7,13 @@ class HomeController extends BaseController
 {
     public function index()
     {
-        return view('app/panel');
-    }   
+        $book = $this->getRepository('book')->getAll();
+        return view('app/panel', $book);
+    }
+
+    public function select($var)
+    {
+        $book = $this->getRepository('book')->find((int)$var->id);
+        return view('select',['book' , $book]);
+    }
 }

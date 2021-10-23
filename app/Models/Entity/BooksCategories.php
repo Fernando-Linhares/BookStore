@@ -13,10 +13,4 @@ class BooksCategories extends BaseModel
     public int $book_id;
 
     public string $table = 'books_categories';
-
-    public function __construct(int $category_id, int $book_id)
-    {
-        $this->category_id = $category_id;
-        $this->book_id = $book_id;
-    }
 }

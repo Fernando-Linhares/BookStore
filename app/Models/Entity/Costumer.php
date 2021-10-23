@@ -19,20 +19,4 @@ class Costumer extends BaseModel
     public int $address_id;
 
     public string $table = 'costumers';
-
-    public function __construct(
-        string $first_name,
-        string $last_name,
-        bool $is_paid,
-        int $to_pay_id,
-        int $address_id
-        )
-    {
-        $this->address_id = $address_id;
-        $this->is_paid = $is_paid;
-        $this->first_name = $first_name;
-        $this->last_name = $last_name;
-        $this->to_pay_id = $to_pay_id;
-        
-    }
 }

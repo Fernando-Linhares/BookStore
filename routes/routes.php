@@ -1,7 +1,6 @@
 <?php
 
 return [
-    '/'=>[
-        \App\Controllers\HomeController::class, 'index'
-    ],
+    '/home'=>[\App\Controllers\HomeController::class, 'index'],
+    '/rental/{id}'=>[\App\Controllers\HomeController::class, 'select'],
 ];

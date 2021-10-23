@@ -13,10 +13,4 @@ class ToPay extends BaseModel
     public int $fees;
     
     public string $table = 'to_pay';
-
-    public function __construct(float $value, int $fees)
-    {
-        $this->value = $value;
-        $this->fees = $fees;   
-    }
 }

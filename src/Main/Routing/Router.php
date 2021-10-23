@@ -21,18 +21,26 @@ class Router
         foreach($routes as $route)
             if($this->getValidRoute($route->getRoute())) return $this->calls($route);
         
-        return false;
+        return http_response_code(404);
     }
 
     public function calls(MapRouter $component)
     {
-        if(!is_null($component->getArgs())){
+        if($component->getArgs()){
                 return $this->callActionWithArgs(
                     $this->getInstance($component->getController()),
                     $component->getAction(),
                     $component->getArgs()
                 );
             }
+
+        if($component->hasKeys()){
+            return $this->callActionWithArgs(
+                $this->getInstance($component->getController()),
+                $component->getAction(),
+                $component->getArgs()
+            );
+        }
         
         return $this->callAction(
             $this->getInstance($component->getController()),

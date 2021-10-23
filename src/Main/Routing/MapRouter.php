@@ -3,7 +3,7 @@ namespace Application\Main\Routing;
 
 class MapRouter
 {
-    private Url $route;
+    private string $route;
 
     private string $controller;
 
@@ -16,14 +16,27 @@ class MapRouter
         $this->controller = $controller;
     }
 
+    public function hasKeys()
+    {
+        $route = $this->getRoute();
+        $uri = new UrL($_SERVER['REQUEST_URI']);
+    
+        $args = $uri->getArgs($route);
+        $this->setArgs($args);
+
+        if(count($args)<1) return false;
+
+        return true;
+    }
+
     public function setAction(string $action)
     {
         $this->action = $action;
     }
 
-    public function setRoute(string $url)
+    public function setRoute(string $route)
     {
-        $this->route = new Url($url);     
+        $this->route = $route;     
     }
 
     public function setArgs($args)
