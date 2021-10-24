@@ -71,3 +71,8 @@ or
 To both commands use:
 
       $ php project up
+
+
+Seeders and Migrations can be configured sequence on *config/seeders.php* and
+*config/migrations.php* and his schemes can me created in *database/Migrations/[NAMEFILE]*
+and *database/Seeders/[NAMEFILE]*.
