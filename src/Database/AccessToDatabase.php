@@ -26,14 +26,14 @@ class AccessToDatabase
         $this->queryBuilder = new QueryBuilder($table);
     }
 
-    public function find(int $id)
+    public function find(int $id, string $classname)
     {
         $query = $this->queryBuilder->select("*")->where('id=:id');
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', $id, PDO::PARAM_INT);
         $statement->execute();
         $fetch = new Fetch($statement);
-        return $fetch->fetchOne();
+        return current($fetch->fetchClass($classname));
     }
 
     public function delete(int $id): bool

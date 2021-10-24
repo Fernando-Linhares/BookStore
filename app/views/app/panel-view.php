@@ -13,13 +13,15 @@
     </header>
 
     <div class="container">
-        <?php foreach($this->data as $book): ?>
+        <?php foreach($this->data->books as $book): ?>
         <div class="card card-border d-inline-block p-3 m-3" >
             <div class="card-title">
                 <?= $book->title ?>
             </div>
             <div class="card-body">
                 <img src="<?= $book->book_cover ?>">
+                <hr>
+                <div>author: <?= $book->author->first_name . $book->author->last_name ?></div>
                 <hr>
                 <a class="btn btn-success" href="/rental/<?= $book->id ?>">location</a>
             </div>

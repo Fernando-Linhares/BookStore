@@ -7,9 +7,9 @@ class HomeController extends BaseController
 {
     public function index()
     {
-        $book = $this->getRepository('book')->getAll();
+        $books = $this->getRepository('book')->getAllWithAuthors();
 
-        return view('app/panel', ['title'=>'home page','book'=>$book]);
+        return view('app/panel', ['title'=>'home page','books'=>$books]);
     }
 
     public function select($request)
