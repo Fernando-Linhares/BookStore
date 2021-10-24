@@ -36,15 +36,15 @@ this file must be like that:
    For use binary to make faster development you can see in folder **bin/**, there is where have
 the commands to create migrations, create seeds, seed to database, migrate tables.
 
-    For create seeds and migrations use the command:
+For create seeds and migrations use the command:
 
-  > php bin/migration MIGRATION_NAME
-  or
-  > php project migration MIGRATION_NAME
-  end
-  > php bin/seeder SEEDER_NAME
-  or
-  > php project seeder SEEDER_NAME
+       php bin/migration MIGRATION_NAME
+or
+       php project migration MIGRATION_NAME
+and
+       php bin/seeder SEEDER_NAME
+or
+       php project seeder SEEDER_NAME
 
-  To both commands use:
-   > php project both NAME_BOTH
+To both commands use:
+        php project both NAME_BOTH
