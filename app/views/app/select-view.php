@@ -11,14 +11,13 @@
     <header>
         <?= $this->include('app/header') ?>
     </header>
-
     <div class="container">
         <div class="card card-border d-inline-block p-3 m-3" >
             <div class="card-title">
-                <?= $this->book->title ?>
+                <?= $this->data->book->title ?>
             </div>
             <div class="card-body">
-                <img src="<?= $this->book->book_cover ?>">
+                <img src="<?= $this->data->book->book_cover ?>">
                 <hr>
             </div>
         </div>

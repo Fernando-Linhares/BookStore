@@ -8,12 +8,15 @@ class HomeController extends BaseController
     public function index()
     {
         $book = $this->getRepository('book')->getAll();
-        return view('app/panel', $book);
+
+        return view('app/panel', ['title'=>'home page','book'=>$book]);
     }
 
-    public function select($var)
+    public function select($request)
     {
-        $book = $this->getRepository('book')->find((int)$var->id);
-        return view('select',['book' , $book]);
+        $id = (int) $request->id;
+        $book = $this->getRepository('book')->find($id);
+
+        return view('app/select', ['title'=>'book '.$book->title, 'book'=> $book]);
     }
 }
