@@ -38,18 +38,36 @@ the commands to create migrations, create seeds, seed to database, migrate table
 
 For create seeds and migrations use the command:
 
-       php bin/migration MIGRATION_NAME
+      $ php bin/migration [MIGRATION_NAME]
 
 or
 
-       php project migration MIGRATION_NAME
+      $ php project migration [MIGRATION_NAME]
 and
 
-       php bin/seeder SEEDER_NAME
+      $ php bin/seeder [SEEDER_NAME]
 or
 
-       php project seeder SEEDER_NAME
+      $ php project seeder [SEEDER_NAME]
 
 To both commands use:
 
-        php project both NAME_BOTH
+      $ php project both [NAME_BOTH]
+
+For create seed and migrate use the command:
+
+      $ php bin/migrate
+
+or
+
+      $ php project migrate
+and
+
+      $ php bin/seed
+or
+
+      $ php project seed
+
+To both commands use:
+
+      $ php project up
