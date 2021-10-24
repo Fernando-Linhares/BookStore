@@ -17,7 +17,7 @@
                 <?= $this->data->book->title ?>
             </div>
             <div class="card-body">
-                <img src="<?= $this->data->book->book_cover ?>">
+                <img src="../../<?= $this->data->book->book_cover ?>">
                 <hr>
             </div>
         </div>

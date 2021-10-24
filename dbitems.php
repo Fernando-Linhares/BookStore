@@ -20,7 +20,7 @@ return [
             '1999-06-03'
         ],
         [
-            'Harry Potter e o prisioneiro de haskabam',
+            'Harry Potter e o prisioneiro de azkaban',
             'assets/images/harryporter3.png',
             1,
             '2001-10-02'
