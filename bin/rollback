@@ -2,8 +2,8 @@
 <?php
 
 require 'src/helpers/helpers.php';
-require 'config/config.php';
 require 'vendor/autoload.php';
+require 'config/config.php';
 
 $migrations = require 'config/migrations.php';
 

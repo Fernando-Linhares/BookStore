@@ -10,7 +10,7 @@ class ToPayMigration extends Migration
     public function up()
     {
         //implements here your schema
-        return $this->table("to_pay")
+        return $this->table("to_paies")
         ->id()
         ->decimal('value',10,2)
         ->int('fees')
@@ -20,7 +20,7 @@ class ToPayMigration extends Migration
     public function down()
     {
         //drop here your schema
-        return 'to_pay';
+        return 'to_paies';
     }
 }
     

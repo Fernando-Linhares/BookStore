@@ -19,6 +19,11 @@ abstract class BaseModel
         return new AccessToDatabase($table);
     }
 
+    public function has(): bool
+    {
+        return $this->getAccessInstance($this->table)->hasOne();
+    }
+
     public function all()
     {
         return $this->getAccessInstance($this->table)->all(get_class($this));

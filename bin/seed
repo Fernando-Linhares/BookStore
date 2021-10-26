@@ -3,8 +3,8 @@
 echo "\033[38;2;80;255;0m SEED FROM DATABASE ---\033[0m";
 
 require 'src/helpers/helpers.php';
-require 'config/config.php';
 require "vendor/autoload.php";
+require 'config/config.php';
 
 foreach(require 'config/seeders.php' as $seeders){
     seed($seeders);

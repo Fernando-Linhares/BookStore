@@ -16,9 +16,9 @@ class CostumersMigration extends Migration
         ->string('last_name')
         ->boolean('is_paid')
         ->int('to_pay_id')
-        ->int('address_id')
+        ->int('addres_id')
         ->relation('to_pay_id')
-        ->relation('address_id')
+        ->relation('addres_id')
         ->create();
     }
 

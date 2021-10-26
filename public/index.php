@@ -1,4 +1,5 @@
 <?php
+
 /**
  *   Here is where all code of application is rendering.
  * the page root where all dependences is loaded and where

@@ -13,6 +13,7 @@ class AccessToDatabase
 
     public function __construct(?string $table=null)
     {
+        
         $this->pdo = new PDO(
             "pgsql:host=localhost; port=5432; dbname=".DATABASE.';',
             USER,
@@ -20,6 +21,7 @@ class AccessToDatabase
             OPTIONS
         );
 
+    
         if(is_null($table))
             $table = 'postgres';
     
@@ -35,7 +37,7 @@ class AccessToDatabase
         $fetch = new Fetch($statement);
         return current($fetch->fetchClass($classname));
     }
-
+    
     public function delete(int $id): bool
     {
         $query = $this->queryBuilder->delete(':id');
@@ -43,13 +45,21 @@ class AccessToDatabase
         $statement->bindParam(':id', $id, PDO::PARAM_INT);
         return $this->resolve($statement());
     }
-
+    
     public function all(string $classname): array
     {
         $query = $this->queryBuilder->select('*');
         $statement = $this->pdo->query($query);
         $fetch = new Fetch($statement);
         return $fetch->fetchClass($classname);
+    }
+   
+    public function hasOne()
+    {
+        $query = $this->queryBuilder->select('count(*)');
+        $statement = $this->pdo->query($query);
+        $fetch = new Fetch($statement);
+        return $fetch->fetchOne()->count >= 1;
     }
 
     public function update(string $col, string $row, int $id): bool
@@ -76,10 +86,12 @@ class AccessToDatabase
         return $statement->execute();
     }
 
+
     private function drop(string $table)
     {
         return $this->pdo->query('DROP TABLE '.$table);
     }
+
 
     public function migrate(object $migration)
     {

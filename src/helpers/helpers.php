@@ -1,12 +1,22 @@
 <?php
 
-
 function view(string $name,$data=null): void
 {
     $views = new Application\Mvc\View\ViewLable;
     $views->setView($name)->with($data)->render();
     return;
     
+}
+
+function hasAnyUser(): bool
+{
+    return (new \App\Models\Entity\User)->has();
+}
+
+function redirect(string $route)
+{
+    $fullroute = "location:$route";
+    header($fullroute);
 }
 
 function regex(): Application\Regex\Regex
@@ -69,10 +79,10 @@ function is_match(string $pattern, string $input): bool
     return $regex->is_match();
 }
 
-function generate(string $key)
+function get_from_file(string $file, string $key)
 {
-   $collection = require 'dbitems.php';
-   return $collection[$key];
+    $collection  = require getcwd().'/'.$file;
+    return $collection[$key];
 }
 
 function env($key)

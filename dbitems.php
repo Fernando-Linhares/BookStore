@@ -4,7 +4,7 @@ return [
         [],
     ],
     'authors'=>[
-        ['J.K','Rowling',],
+        ['frist_name'=>'J.K','last_name'=>'Rowling'],
     ],
     'books'=>[
         [
@@ -52,6 +52,13 @@ return [
         [],
     ],
     'users'=>[
-        [],
+        [
+            'first_name'=>'admin',
+            'last_name'=>'adm',
+            'email'=>'admin@gmail.com',
+            'password'=>'abc123',
+            'created_at'=>'2021-10-26',
+            'updated_at'=>'2021-10-26'
+        ],
     ],
 ];
