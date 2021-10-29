@@ -1,7 +1,7 @@
 <?php
-namespace Application\Database\Migrations;
+namespace Application\Database\Migration;
 
-abstract class Migration
+abstract class BaseMigration
 {
     protected string $query = '';
 
@@ -15,9 +15,14 @@ abstract class Migration
 
     public function table(string $table)
     {
-        $this->table = $table;   
+        $this->table = $table;
         $this->query .= "CREATE TABLE $table ";
         return $this;
+    }
+
+    public function drop(string $table)
+    {
+        return "DROP TABLE IF EXISTS $table CASCADE";
     }
 
     public function id()
@@ -116,5 +121,4 @@ abstract class Migration
     {
         return $this->query;
     }
-
 }

@@ -1,8 +1,10 @@
 <?php
 namespace Application\Mvc\Models;
 
+use Application\Database\Access\Access;
 use Application\Database\AccessToDatabase;
 use Application\Database\QueryBuilder;
+use PDOStatement;
 use stdClass;
 
 abstract class BaseModel
@@ -16,7 +18,7 @@ abstract class BaseModel
 
     public function getAccessInstance($table)
     {
-        return new AccessToDatabase($table);
+        return (new Access)->getAccess($table);
     }
 
     public function has(): bool
@@ -39,13 +41,13 @@ abstract class BaseModel
         return $this->getAccessInstance($this->table)->find($id, $classname);
     }
 
-    public function make(\PDO $statemant)
+    public function make(\PDO $pdo): PDOStatement
     {
         $loaded = $this->load();
         $query =  $this
         ->getQueryBuilder($loaded->entity->table)
         ->insert($loaded->attrs);
-        $app = $statemant->prepare($query);
+        $app = $pdo->prepare($query);
         foreach($loaded->attrs as $key=>$value){        
             $app->bindValue(':'.$key,$value);
         }

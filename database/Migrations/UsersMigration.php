@@ -2,11 +2,11 @@
 
 namespace Database\Migrations;
 
-use Application\Database\Migrations\Migration;
+use Application\Database\Migration\Migrable;
+use Application\Database\Migration\BaseMigration;
 
-class UsersMigration extends Migration
+class UsersMigration extends BaseMigration implements Migrable
 {
-
     public function up()
     {
         //implements here your schema
@@ -24,7 +24,7 @@ class UsersMigration extends Migration
     public function down()
     {
         //drop here your schema
-        return 'users';
+        return $this->drop('users');
     }
 }
     

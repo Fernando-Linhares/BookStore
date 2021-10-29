@@ -1,11 +1,8 @@
 #!/usr/bin/php
 <?php
-echo "\033[38;2;80;255;0m MIGRATE FROM DATABASE ---";
-
-require 'src/helpers/helpers.php';
-require "vendor/autoload.php";
-require 'config/config.php';
-
-foreach(require 'config/migrations.php' as $migration){
+require '../src/helpers/helpers.php';
+require "../vendor/autoload.php";
+require '../config/config.php';
+foreach(require '../config/migrations.php' as $migration){
     migrate($migration);
 }

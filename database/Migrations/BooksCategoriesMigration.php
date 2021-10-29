@@ -1,10 +1,10 @@
 <?php
-
 namespace Database\Migrations;
 
-use Application\Database\Migrations\Migration;
+use Application\Database\Migration\BaseMigration;
+use Application\Database\Migration\Migrable;
 
-class BooksCategoriesMigration extends Migration
+class BooksCategoriesMigration extends BaseMigration implements Migrable
 {
 
     public function up()
@@ -22,7 +22,7 @@ class BooksCategoriesMigration extends Migration
     public function down()
     {
         //drop here your schema
-        return 'books_categories';
+        return $this->drop('books_categories');
     }
 }
     

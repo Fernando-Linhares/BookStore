@@ -2,7 +2,7 @@
 <?php
 
 $migration  = trim($argv[1]);
-$filename  = 'database/Migrations/'.ucfirst($migration).'Migration.php';
+$filename  = '../database/Migrations/'.ucfirst($migration).'Migration.php';
 $content = template($migration);
 if(
     file_put_contents($filename,$content) 

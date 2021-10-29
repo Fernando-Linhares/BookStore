@@ -1,6 +1,5 @@
 <?php
-namespace Application\Database\Fetcher;
-
+namespace Application\Database\Features;
 
 class Fetch
 {

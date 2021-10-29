@@ -1,131 +1,84 @@
 <?php
 namespace Application\Database;
 
-use Application\Database\Fetcher\Fetch;
-use PDOStatement;
-use PDO;
-use PDOException;
+use Application\Database\Features\All;
+use Application\Database\Features\Deleter;
+use Application\Database\Features\Finder;
+use Application\Database\Features\Migrator;
+use Application\Database\Features\Creator;
+use Application\Database\Features\Has;
+use Application\Database\Features\RollBacker;
+use Application\Database\Features\Updator;
+
 
 class AccessToDatabase
 {
-    private PDO $pdo;
-    private QueryBuilder $queryBuilder;
+    private Finder $finder;
+    private Deleter $deleter;
+    private Creator $creator;
+    private Updator $updator;
+    private Migrator $migrator;
+    private RollBacker $rollbacker;
+    private All $all;
+    private Has $has;
 
     public function __construct(?string $table=null)
     {
-        
-        $this->pdo = new PDO(
-            "pgsql:host=localhost; port=5432; dbname=".DATABASE.';',
-            USER,
-            PASSWORD,
-            OPTIONS
-        );
-
-    
-        if(is_null($table))
+        if(empty($table))
             $table = 'postgres';
     
-        $this->queryBuilder = new QueryBuilder($table);
+        $this->finder = new Finder($this->getPdo(), $table);
+        $this->deleter = new Deleter($this->getPdo(), $table);
+        $this->creator = new Creator($this->getPdo());
+        $this->updator = new Updator($this->getPdo(), $table);
+        $this->migrator = new Migrator($this->getPdo(), $table);
+        $this->rollbacker = new RollBacker($this->getPdo(), $table);
+        $this->all = new All($this->getPdo(), $table);
+        $this->has = new Has($this->getPdo(), $table);
     }
 
-    public function find(int $id, string $classname)
+    public function getPdo(): \PDO
     {
-        $query = $this->queryBuilder->select("*")->where('id=:id');
-        $statement = $this->pdo->prepare($query);
-        $statement->bindValue(':id', $id, PDO::PARAM_INT);
-        $statement->execute();
-        $fetch = new Fetch($statement);
-        return current($fetch->fetchClass($classname));
+        return PdoSingleton::getPdo(); 
+    }
+
+    public function find(int $id, string $classname): ?array
+    {
+        return $this->finder->find($id, $classname);
     }
     
     public function delete(int $id): bool
     {
-        $query = $this->queryBuilder->delete(':id');
-        $statement = $this->pdo->prepare($query);
-        $statement->bindParam(':id', $id, PDO::PARAM_INT);
-        return $this->resolve($statement());
+       return  $this->deleter->delete($id);
     }
     
-    public function all(string $classname): array
+    public function all(string $classname): ?array
     {
-        $query = $this->queryBuilder->select('*');
-        $statement = $this->pdo->query($query);
-        $fetch = new Fetch($statement);
-        return $fetch->fetchClass($classname);
+        return $this->all->getAll($classname);
     }
    
     public function hasOne()
     {
-        $query = $this->queryBuilder->select('count(*)');
-        $statement = $this->pdo->query($query);
-        $fetch = new Fetch($statement);
-        return $fetch->fetchOne()->count >= 1;
+        return $this->has->hasOne();
     }
 
     public function update(string $col, string $row, int $id): bool
     {
-
-        $query = $this->queryBuilder->update(" {$col} = ?", '?');
-    
-        $statement = $this->pdo->prepare($query);
-        $statement->bindParam(1, $row, PDO::PARAM_STR);
-        $statement->bindParam(2, $id, PDO::PARAM_INT);
-
-        return $this->resolve($statement);
+        return $this->updator->update($col,$row,$id);
     }
 
     public function create(object $entity)
     {
-        return $this->resolve(
-            $entity->make($this->pdo)
-        );
+        return $this->creator->create($entity);
     }
-
-    private function resolve(PDOStatement $statement): bool
-    {
-        return $statement->execute();
-    }
-
-
-    private function drop(string $table)
-    {
-        return $this->pdo->query('DROP TABLE '.$table);
-    }
-
 
     public function migrate(object $migration)
     {
-        try{
-            $query = $migration->up();
-    
-            if($this->pdo->query((string) $query)) return true;
-            
-        }catch(PDOException $e)
-        {
-            $error = $e->getMessage();
-    
-            if(is_match('SQLSTATE\[42P07\]', $error)){
-                echo "\033[38;2;255;255;0m dropping table ..\033[0m". PHP_EOL;
-                $this->drop($query->getTable());
-                echo "\033[38;2;0;102;0m table dropped \033[0m".PHP_EOL;
-                if($this->pdo->query((string) $query))
-                    return true;
-            }else{
-                echo $error . PHP_EOL;
-            }
-        }
+        return $this->migrator->migrate($migration);
     }
 
     public function rollBack($instance)
     {
-       if($this->drop($instance->down())){
-            echo "\033[38;2;255;255;0m dropping table ..\033[0m". PHP_EOL;
-            echo "\033[38;2;0;102;0m table dropped \033[0m".PHP_EOL;
-        }
-    }
-
-    public function __destruct()
-    {
-        unset($this->pdo);
+       return $this->rollbacker->rollBack($instance);
     }
 }

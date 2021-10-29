@@ -3,7 +3,7 @@
 
 define("APPNAME", env('appname'));
 define('DATABASE',env('database'));
-define("USER",env('user'));
+define("USER",env('username'));
 define("PASSWORD",env('password'));
 define("OPTIONS",[
     PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,

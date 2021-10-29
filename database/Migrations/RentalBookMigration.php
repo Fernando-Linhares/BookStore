@@ -2,9 +2,10 @@
 
 namespace Database\Migrations;
 
-use Application\Database\Migrations\Migration;
+use Application\Database\Migration\BaseMigration;
+use Application\Database\Migration\Migrable;
 
-class RentalBookMigration extends Migration
+class RentalBookMigration extends BaseMigration implements Migrable
 {
 
     public function up()
@@ -23,7 +24,7 @@ class RentalBookMigration extends Migration
     public function down()
     {
         //drop here your schema
-        return 'rental_book';
+        return $this->drop('rental_book');
     }
 }
     

@@ -1,10 +1,10 @@
 #!/usr/bin/php
 <?php
 
-require 'src/helpers/helpers.php';
-require 'vendor/autoload.php';
-require 'config/config.php';
+require '../src/helpers/helpers.php';
+require '../vendor/autoload.php';
+require '../config/config.php';
 
-$migrations = require 'config/migrations.php';
-
-call_down(end($migrations));
+foreach(require '../config/migrations.php' as $migration){
+    call_down($migration);
+}

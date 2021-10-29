@@ -8,31 +8,31 @@ $input = $argv[1];
 switch($input)
 {
     case 'migrate':
-        $command = 'php bin/migrate';
+        $command = 'cd bin;php migrate';
     break;
     case 'migration':
-        $command = "php bin/migration {$argv[2]}";
+        $command = "cd bin/;php migration {$argv[2]}";
     break;
     case 'server':
-        $command = 'php bin/server ';
+        $command = 'cd bin/;php server ';
     break;
     case 'test':
         $command = 'php bin/test';
     break;
     case 'rollback':
-        $command = 'php bin/rollback';
+        $command = 'cd bin/;php rollback';
     break;
     case 'seeder':
-        $command = "php bin/seeder {$argv[2]}";
+        $command = "cd bin/;php seeder {$argv[2]}";
     break;
     case 'seed':
-        $command = 'php bin/seed';
+        $command = 'cd bin/;php seed';
     break;
     case 'up':
-        $command = 'php bin/seed; php bin/migrate';
+        $command = 'cd bin/;php seed; php migrate';
     break;
     case 'both':
-        $command = "php bin/seeder {$argv[2]};php bin/migration {$argv[2]}";
+        $command = "cd bin/;php seeder {$argv[2]};php migration {$argv[2]}";
     break;
     default:
         throw new Exception('error code '.$argv[1].' is not expected');
@@ -40,4 +40,4 @@ switch($input)
 }
 
 
-shell_exec($command);
+echo shell_exec($command);

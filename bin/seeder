@@ -1,6 +1,6 @@
 <?php
 $seeders  = trim($argv[1]);
-$filename  = 'database/Seeders/'.ucfirst($seeders).'Seeder.php';
+$filename  = '../database/Seeders/'.ucfirst($seeders).'Seeder.php';
 $content = template($seeders);
 if(
     file_put_contents($filename,$content) 

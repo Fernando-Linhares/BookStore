@@ -2,9 +2,10 @@
 
 namespace Database\Migrations;
 
-use Application\Database\Migrations\Migration;
+use Application\Database\Migration\BaseMigration;
+use Application\Database\Migration\Migrable;
 
-class ToPayMigration extends Migration
+class ToPayMigration extends BaseMigration implements Migrable
 {
 
     public function up()
@@ -20,7 +21,7 @@ class ToPayMigration extends Migration
     public function down()
     {
         //drop here your schema
-        return 'to_paies';
+        return $this->drop('to_paies');
     }
 }
     

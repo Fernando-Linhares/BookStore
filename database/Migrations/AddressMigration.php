@@ -2,11 +2,11 @@
 
 namespace Database\Migrations;
 
-use Application\Database\Migrations\Migration;
+use Application\Database\Migration\BaseMigration;
+use Application\Database\Migration\Migrable;
 
-class AddressMigration extends Migration
+class AddressMigration extends BaseMigration implements Migrable
 {
-
     public function up()
     {
         //implements here your schema
@@ -22,7 +22,7 @@ class AddressMigration extends Migration
     public function down()
     {
         //drop here your schema
-        return 'address';
+        return $this->drop('address');
     }
 }
     
