@@ -1,4 +1,5 @@
 <?php
+
 include 'database.php';
 
 function view(string $name,$data=null): void
@@ -25,10 +26,6 @@ function regex(): Application\Regex\Regex
     return new Application\Regex\Regex;
 }
 
-function request(?string $name)
-{
-    return (object) $_REQUEST[$name];
-}
 
 function dd(...$some)
 {
@@ -60,4 +57,17 @@ function env($key)
 {
     $dotenv = new Application\Dotenv\Dotenv('../.env');
     return $dotenv->getKey($key);
+}
+
+function request(): Application\Http\Request\RequestHttp
+{
+    $request = new Application\Http\HttpContract\Http;
+    return $request->getRequest();
+}
+
+function tokenCSRF()
+{
+    $msg = 'anomatopeia';
+    $cript = base64_encode($msg);
+    return "<input type='hidden' value='{$cript}' name='token' >";
 }

@@ -11,6 +11,7 @@
    <form action="/validate" method="post">
     <div>email:<br><input type="email" name="email"></div>
     <div>password:<br><input type="password" name="password"></div>
+    <?= tokenCSRF() ?>
     <input type="submit" value="send">
     </form>
 </body>
