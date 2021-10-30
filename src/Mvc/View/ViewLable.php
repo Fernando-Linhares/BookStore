@@ -5,7 +5,9 @@ namespace Application\Mvc\View;
 class ViewLable
 {
     private const DEPENDECES = [
-        FrontEnd::BOOTSTRAP,
+        FrontEnd::CSSFRAMEWORK,
+        FrontEnd::JSLIB,
+        FrontEnd::ICONS,
         FrontEnd::JS,
         FrontEnd::CSS
     ];
@@ -40,11 +42,6 @@ class ViewLable
     public function include(string $name)
     {
         include '../app/views/'.$name.'-view.php';
-    }
-
-    public function getComponent(ContractComponent $component)
-    {
-        return $component->render();
     }
 
     public function getDependences()
