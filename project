@@ -34,6 +34,9 @@ switch($input)
     case 'both':
         $command = "cd bin/;php seeder {$argv[2]};php migration {$argv[2]}";
     break;
+    case 'generate':
+        $command = 'cd bin/;php generate';
+    break;
     default:
         throw new Exception('error code '.$argv[1].' is not expected');
     break;

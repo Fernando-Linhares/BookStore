@@ -1,6 +1,4 @@
-
 <?php
-
 define("APPNAME", env('appname'));
 define('DATABASE',env('database'));
 define("USER",env('username'));
@@ -15,3 +13,5 @@ define('DEBUG', env('debug'));
 define('PRODUCTION',env('production'));
 define('DEVELOPMENT',env('development'));
 define('URL','http://localhost:8000/');
+define('KEY',env('key'));
+define('NONCE',env('nonce'));

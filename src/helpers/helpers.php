@@ -71,3 +71,14 @@ function tokenCSRF()
     $cript = base64_encode($msg);
     return "<input type='hidden' value='{$cript}' name='token' >";
 }
+
+function generate_key()
+{
+    $criptLib = new Application\Cripto\Crypt;
+    return $criptLib->generateKey();
+}
+
+function get_token_by(string $text)
+{
+    //on process
+}

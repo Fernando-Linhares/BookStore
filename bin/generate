@@ -1,0 +1,7 @@
+#!/usr/bin/php
+<?php
+require '../src/helpers/helpers.php';
+require "../vendor/autoload.php";
+require '../config/config.php';
+echo  " ";
+generate_key();

@@ -15,7 +15,7 @@ class Dotenv extends Regex
     public function getKey(string $key)
     {
         $key = strtoupper($key);
-        $this->setPattern("$key=[a-z0-9\_]+");
+        $this->setPattern("$key=[a-z0-9\_\+\$\\-\/\\\=\@]+");
         $this->setInput($this->content);
         return $this->removeKey(trim($this->getResult()), $key);
     }
