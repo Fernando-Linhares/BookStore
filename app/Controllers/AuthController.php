@@ -14,7 +14,7 @@ class AuthController extends BaseController
     }
 
     public function verifyLogin()
-    { 
+    {
         dd(request());
     }
 }

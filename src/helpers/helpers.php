@@ -1,6 +1,7 @@
 <?php
 
-include 'database.php';
+include __DIR__.'/database.php';
+include __DIR__.'/csrftoken.php';
 
 function view(string $name,$data=null): void
 {
@@ -63,22 +64,4 @@ function request(): Application\Http\Request\RequestHttp
 {
     $request = new Application\Http\HttpContract\Http;
     return $request->getRequest();
-}
-
-function tokenCSRF()
-{
-    $msg = 'anomatopeia';
-    $cript = base64_encode($msg);
-    return "<input type='hidden' value='{$cript}' name='token' >";
-}
-
-function generate_key()
-{
-    $criptLib = new Application\Cripto\Crypt;
-    return $criptLib->generateKey();
-}
-
-function get_token_by(string $text)
-{
-    //on process
 }
