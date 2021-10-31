@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use Application\Mvc\Controllers\BaseController;
+use Application\Sessions\Session;
 
 class AuthController extends BaseController
 {
@@ -17,9 +18,10 @@ class AuthController extends BaseController
     {
         $request = request();
 
-        if($this->getRepository('users')->verify($request))
+        if($this->getRepository('users')->verify($request)){
             return redirect('/dashboard');
-            
+        }
+
         return view('auth/error');
     }
 }

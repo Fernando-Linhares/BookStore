@@ -82,7 +82,7 @@ function nonce_regenerate()
     return file_put_contents('../temp/nonce',base64_encode($nonce));
 }
 
-function temp(string $file)
+function temp(?string $file=null)
 {
     return file_get_contents('../temp/'.$file);
 }
