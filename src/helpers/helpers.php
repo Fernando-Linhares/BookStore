@@ -7,8 +7,6 @@ function view(string $name,$data=null): void
 {
     $views = new Application\Mvc\View\ViewLable;
     $views->setView($name)->with($data)->render();
-    return;
-    
 }
 
 function hasAnyUser(): bool
@@ -64,4 +62,27 @@ function request(): Application\Http\Request\RequestHttp
 {
     $request = new Application\Http\HttpContract\Http;
     return $request->getRequest();
+}
+
+function path(string $path): string
+{
+    return URL . $path;
+}
+
+function check_password(string $password_from_database, string $password_from_request): bool
+{
+   $cryptLib = new Application\Cripto\Crypt;
+   $password_decrypted = $cryptLib->decrypt($password_from_database);
+   return $password_decrypted === $password_from_request;
+}
+
+function nonce_regenerate()
+{
+    $nonce = random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
+    return file_put_contents('../temp/nonce',base64_encode($nonce));
+}
+
+function temp(string $file)
+{
+    return file_get_contents('../temp/'.$file);
 }

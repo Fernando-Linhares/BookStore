@@ -20,6 +20,7 @@ class PdoSingleton
                 OPTIONS
             );
         }
+
         return self::$pdo;
     }
 }

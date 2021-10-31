@@ -1,6 +1,11 @@
 #!/usr/bin/php
 <?php
 
+require '../src/helpers/helpers.php';
+require '../vendor/autoload.php';
+
+$message = new Application\Messages\ShellMessager;
+
 $migration  = trim($argv[1]);
 $filename  = '../database/Migrations/'.ucfirst($migration).'Migration.php';
 $content = template($migration);
@@ -8,19 +13,26 @@ if(
     file_put_contents($filename,$content) 
     && configure($filename)
 )
-    die("\033[38;2;0;102;0m  migration created successfully \033[0m\n");
+    $message->success('migration created successfully');
 else
-    echo die('error');
+    $message->danger('error on create migration');
 
 function template(&$table): string
 {
+    $date = date('Y-m-d h:m:s');
     $tempstring = '<?php
 
 namespace Database\Migrations;
 
-use Application\Database\Migrations\Migration;
+use Application\Database\Migration\BaseMigration;
+use Application\Database\Migration\Migrable;
 
-class '.ucfirst($table).'Migration extends Migration
+/**
+ * Migration created in '.$date.'.
+ * See more on documentation https://github.com/Fernando-Linhares/BookStore
+ */
+
+class '.ucfirst($table).'Migration extends BaseMigration implements Migrable
 {
 
     public function up()
@@ -34,7 +46,7 @@ class '.ucfirst($table).'Migration extends Migration
     public function down()
     {
         //drop here your schema
-        return;
+        return $this->drop("'.$table.'");
     }
 }
     ';
@@ -43,10 +55,16 @@ class '.ucfirst($table).'Migration extends Migration
 
 function configure($name)
 {
-    $path = 'config/migrations.php';
-    $namespace =str_replace('/','\\',ucfirst(substr($name,0,-4)));
+    $path = '../config/migrations.php';
+    $namespace = str_replace('/','\\',
+    ucfirst(
+        substr(
+            substr($name, 0, -4)
+           ,3)
+        )
+    );
     $filecontent = file_get_contents($path);
-    
+
     $content = substr($filecontent,0,-3) . "\n\t$namespace::class,\n];";
 
     return file_put_contents($path,$content);

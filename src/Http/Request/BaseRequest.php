@@ -10,4 +10,19 @@ abstract class BaseRequest
     {
         return verify_token($this->csrf_token);
     }
+
+    public function safe(string $input): string
+    {
+        return $this->clear($input);
+    }
+
+    private function clear(string $input)
+    {
+        $message = new \Application\Messages\BrowserMessager;
+
+        if(is_match('(.*?[=|;].*)',$input))
+            return $message->span('ERROR WHAT YOU WANTING DO? ('. $input.')');
+    
+        return htmlspecialchars($input);
+    }
 }

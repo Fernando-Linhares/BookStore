@@ -24,3 +24,9 @@ function generate_key()
     $criptLib = new Application\Cripto\Crypt;   
     return $criptLib->generateKey();
 }
+
+function make_hash(string $text): string
+{
+    $criptLib = new Application\Cripto\Crypt;
+    return $criptLib->encrypt($text);
+}

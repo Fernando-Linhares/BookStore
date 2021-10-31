@@ -21,7 +21,7 @@ class Deleter
     public function delete(int $id)
     {
         $statement = $this->pdo->prepare($this->query);
-        $statement->bindValue(0, $id, \PDO::PARAM_INT);
+        $statement->bindValue(1, $id, \PDO::PARAM_INT);
         return $statement->execute();
     }
 }

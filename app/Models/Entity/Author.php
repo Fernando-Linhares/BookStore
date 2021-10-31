@@ -13,5 +13,4 @@ class Author extends BaseModel
     public string $last_name;
 
     public string $table = 'authors';
-
 }

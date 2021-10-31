@@ -15,9 +15,10 @@ class Http implements HttpInterface
     public function getRequest(): RequestHttp
     {
         $request = new RequestHttp;
+
         foreach($_REQUEST as $key => $value)
         {
-            $request->$key = $value;
+            $request->$key = $request->safe($value);
         }
     
         if(!$request->validate())

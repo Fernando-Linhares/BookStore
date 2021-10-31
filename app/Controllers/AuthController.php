@@ -15,6 +15,11 @@ class AuthController extends BaseController
 
     public function verifyLogin()
     {
-        dd(request());
+        $request = request();
+
+        if($this->getRepository('users')->verify($request))
+            return redirect('/dashboard');
+            
+        return view('auth/error');
     }
 }

@@ -15,16 +15,12 @@ class GeneratorKey
     public function generate(): void
     {
         $key = random_bytes(SODIUM_CRYPTO_SECRETBOX_KEYBYTES);
-        $nonce = random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
-
 
         $base64_key = base64_encode($key);
-        $base64_nonce = base64_encode($nonce);
 
-        $inserted = $this->insert_content('../.env', ['KEY'=>$base64_key,'NONCE'=> $base64_nonce]);
-
+        $inserted = $this->insert_content('../.env', ['KEY', $base64_key]);
      
-        if($inserted)
+        if($inserted && nonce_regenerate())
             $this->message->success('key generated successfully');
         else
             $this->message->danger("don't able generate key");
@@ -38,14 +34,8 @@ class GeneratorKey
 
         $index = count($lines) - 1;
 
-        $moretwo = 2 + $index;
-    
-        $count = 0;
-
-        for($i=$index;$i<$moretwo;$i++){
-            $lines[$i] = array_keys($content)[$count].'='.array_values($content)[$count];
-            $count++;
-        }
-        return file_put_contents($filename, implode("\n",$lines));
+        $lines[$index] = implode('=', $content);
+        
+        return file_put_contents($filename, implode("\n",$lines));   
     }
 }

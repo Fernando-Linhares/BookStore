@@ -14,7 +14,7 @@
                 <i class="material-icons">collections_bookmark</i>
             </h3>
         <div class="card-panel white">
-            <form action="createLogin" method="post">
+            <form action="<?= path('register') ?>" method="post">
                 <div class="row">
                     <div class="col s6">
                         <div class="input-field">

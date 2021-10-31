@@ -10,7 +10,6 @@ use Application\Database\Features\Has;
 use Application\Database\Features\RollBacker;
 use Application\Database\Features\Updator;
 
-
 class AccessToDatabase
 {
     private Finder $finder;
@@ -47,6 +46,11 @@ class AccessToDatabase
         return $this->finder->find($id, $classname);
     }
     
+    public function where(string $col, string $value, string $classname)
+    {
+        return $this->finder->findWhere($col,$value,$classname);
+    }
+
     public function delete(int $id): bool
     {
        return  $this->deleter->delete($id);
@@ -67,7 +71,7 @@ class AccessToDatabase
         return $this->updator->update($col,$row,$id);
     }
 
-    public function create(object $entity)
+    public function create(object $entity): bool
     {
         return $this->creator->create($entity);
     }

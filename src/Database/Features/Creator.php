@@ -10,7 +10,7 @@ class Creator
         $this->pdo = $pdo;
     }
 
-    public function create(object $entity)
+    public function create(object $entity): bool
     {
         $statement = $entity->make($this->pdo);
         return $statement->execute();

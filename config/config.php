@@ -14,4 +14,4 @@ define('PRODUCTION',env('production'));
 define('DEVELOPMENT',env('development'));
 define('URL','http://localhost:8000/');
 define('KEY',env('key'));
-define('NONCE',env('nonce'));
+define('NONCE',temp('nonce'));

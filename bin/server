@@ -1,4 +1,4 @@
 #!/usr/bin/php
 <?php
 
-shell_exec("php -S localhost:8000 -t public/");
+shell_exec("php -S localhost:8000 -t ../public/");
