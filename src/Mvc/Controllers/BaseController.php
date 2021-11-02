@@ -10,8 +10,10 @@ abstract class BaseController
        return new $repository;
     }
 
-    private function getName(string $name)
+    private function getName(string $entityName)
     {
+        $entity = new $entityName;
+        $name = substr($entity->table,0,-1);
         $namespace = 'App\\Models\\Repositories\\';
         return $namespace.(ucfirst($name)).'Repository';
     }

@@ -22,7 +22,7 @@ class RegisterController extends BaseController
         $user->email = $request->email;
         $user->password = make_hash($request->password);
         
-        if($this->getRepository('users')->create($user))
+        if($this->getRepository(User::class)->create($user))
             return view('auth/register/success');
     
        return view('auth/register/error');

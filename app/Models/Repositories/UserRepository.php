@@ -2,16 +2,15 @@
 namespace App\Models\Repositories;
 
 use App\Models\Entity\User;
-use Application\Database\Access\Access;
 use Application\Sessions\Session;
 
-class UsersRepository
+class UserRepository
 {
-    private Access $access;
+    private User $user;
 
     public function __construct()
     {
-        $this->access = new Access;
+        $this->user = new User;
     }
 
     public function create(User $user)
@@ -23,7 +22,7 @@ class UsersRepository
 
     public function verify(object $data)
     {
-        $user  = $this->access->getAccess('users')->where('email' ,$data->email, User::class);
+        $user  = $this->user->where('email' ,$data->email);
 
         if(empty($user)) return false;
 

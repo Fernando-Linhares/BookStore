@@ -9,6 +9,7 @@ use Application\Database\Features\Creator;
 use Application\Database\Features\Has;
 use Application\Database\Features\RollBacker;
 use Application\Database\Features\Updator;
+use Application\Database\Features\Joiner;
 
 class AccessToDatabase
 {
@@ -20,6 +21,7 @@ class AccessToDatabase
     private RollBacker $rollbacker;
     private All $all;
     private Has $has;
+    private Joiner $joiner;
 
     public function __construct(?string $table=null)
     {
@@ -34,6 +36,7 @@ class AccessToDatabase
         $this->rollbacker = new RollBacker($this->getPdo(), $table);
         $this->all = new All($this->getPdo(), $table);
         $this->has = new Has($this->getPdo(), $table);
+        $this->joiner = new Joiner($this->getPdo(), $table);
     }
 
     public function getPdo(): \PDO
@@ -45,10 +48,15 @@ class AccessToDatabase
     {
         return $this->finder->find($id, $classname);
     }
+
+    public function join(string $table)
+    {
+        return $this->joiner->join($table);
+    }
     
     public function where(string $col, string $value, string $classname)
     {
-        return $this->finder->findWhere($col,$value,$classname);
+        return $this->finder->findWhere($col, $value, $classname);
     }
 
     public function delete(int $id): bool

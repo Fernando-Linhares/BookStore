@@ -2,7 +2,6 @@
 namespace Application\Mvc\Models;
 
 use Application\Database\Access\Access;
-use Application\Database\AccessToDatabase;
 use Application\Database\QueryBuilder;
 use PDOStatement;
 use stdClass;
@@ -16,6 +15,11 @@ abstract class BaseModel
         return $this->getAccessInstance($this->table)->create($this);
     }
 
+    public function where(string $key, string $value)
+    {
+        return $this->getAccessInstance($this->table)->where($key,$value,get_class($this));
+    }
+
     public function getAccessInstance($table)
     {
         return (new Access)->getAccess($table);
@@ -24,6 +28,11 @@ abstract class BaseModel
     public function has(): bool
     {
         return $this->getAccessInstance($this->table)->hasOne();
+    }
+
+    public function join(string $nameEntity)
+    {   
+        return $this->getAccessInstance($this->table)->join($nameEntity);
     }
 
     public function all()

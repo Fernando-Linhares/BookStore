@@ -3,7 +3,9 @@ namespace App\Models\Repositories;
 
 use App\Models\Entity\{
     Book,
-    Author
+    Author,
+    BooksCategories,
+    Category
 };
 
 class BookRepository
@@ -19,7 +21,12 @@ class BookRepository
 
     public function getAll()
     {
-        return $this->book->all();
+        // return $this->book->join(Author::class)->join(Category::class)->join(BooksCategories::class);
+    }
+
+    public function join(string $entityName)
+    {
+        return $this->book->join($entityName);
     }
 
     public function find(int $id)

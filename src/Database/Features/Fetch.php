@@ -1,6 +1,8 @@
 <?php
 namespace Application\Database\Features;
 
+use Application\Mvc\Models\GroupModel;
+
 class Fetch
 {
     private \PDOstatement $statement;
@@ -12,13 +14,19 @@ class Fetch
 
     public function fetchAssoc()
     {
-        return $this->statement->fetch(\PDO::FETCH_ASSOC);
+        return $this->statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function fetchOne(string $classname)
     {
         return current($this->fetchClass($classname));  
     }
+
+    public function fetchGroup()
+    {
+        return $this->statement->fetchAll(\PDO::FETCH_CLASS, GroupModel::class);
+    }
+
     public function fetchAll()
     {
         return $this->statement->fetchAll();

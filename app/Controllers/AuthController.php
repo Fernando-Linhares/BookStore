@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 
+use App\Models\Entity\User;
 use Application\Mvc\Controllers\BaseController;
 
 class AuthController extends BaseController
@@ -16,8 +17,7 @@ class AuthController extends BaseController
     public function verifyLogin()
     {
         $request = request();
-
-        if($this->getRepository('users')->verify($request)){
+        if($this->getRepository(User::class)->verify($request)){
             return redirect('/dashboard');
         }
 

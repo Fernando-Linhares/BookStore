@@ -2,6 +2,7 @@
 
 return [
 	Database\Migrations\AuthorsMigration::class,
+	Database\Migrations\DescriptionsMigration::class,
 	Database\Migrations\BooksMigration::class,
 	Database\Migrations\CategoriesMigration::class,
 	Database\Migrations\BooksCategoriesMigration::class,

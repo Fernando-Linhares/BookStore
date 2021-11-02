@@ -14,6 +14,7 @@ class UsersMigration extends BaseMigration implements Migrable
         ->id()
         ->string('first_name')
         ->string('last_name')
+        ->string('image')
         ->string('email')
         ->string('password')
         ->timestamp('created_at')

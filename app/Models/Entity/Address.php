@@ -15,5 +15,4 @@ class Address extends BaseModel
     public string $complement;
 
     public string $table = 'address';
-
 }

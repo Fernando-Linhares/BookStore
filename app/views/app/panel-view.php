@@ -43,7 +43,7 @@
                     Add books
                 </div>
             </div>
-            <div class="card red lighten-4" style="padding: 30px;">
+            <div class="card purple lighten-4" style="padding: 30px;">
                 
                 <?php if(is_string($this->data->books)): ?>
                     <div class="red-text center-align">
@@ -52,17 +52,25 @@
                 <?php else: ?>
 
                 <?php foreach($this->data->books as $book): ?>
-                <div class="card card-border w-10 d-inline-block p-3 m-3" >
-                    <div class="card-title">
-                        <?= $book->title ?>
-                    </div>
-                    <div class="card-body">
-                        <img class="img" width="100px" height="150px" src="<?= $book->book_cover ?>">
-                        <hr>
-                        <div>author: <?= $book->author->first_name . $book->author->last_name ?></div>
-                        <hr>
-                        <a class="btn" href="/rental/<?= $book->id ?>">location</a>
-                    </div>
+                        <div class="col s12 m7">
+                            <div class="card horizontal">
+                            <div class="card-image">
+                                <img src="<?= $book->book_cover ?>">
+                            </div>
+                            <div class="card-stacked">
+                                <div class="card-content">
+                                <h4>
+                                     <?= $book->title ?>
+                                </h4>
+                                    <button class="btn red">fantasy</button>
+                                    <button class="btn purple darken-3">terror</button>
+
+                                </div>
+                                <div class="card-action"> 
+                                <a  href="/rental/<?= $book->id ?>">rental</a>
+                                </div>
+                            </div>
+                            </div>
                 </div>
                 <?php endforeach; ?>
     
