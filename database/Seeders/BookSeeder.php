@@ -8,9 +8,14 @@ class BookSeeder extends Seeder
 {
     public function update()
     {
-        foreach(generate('books') as $data){
-            $instance = new Book(...$data);
-            $instance->save();
-        }
+            foreach(get_from_file('../dbitems.php','books') as $data){
+                $instance = new Book;
+                $instance->title = $data['title'];
+                $instance->book_cover = $data['book_cover'];
+                $instance->author_id = $data['author_id'];
+                $instance->published_at = $data['published_at'];
+                $instance->save();
+            }
+        
     }
 }

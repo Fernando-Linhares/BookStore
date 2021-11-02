@@ -6,5 +6,7 @@ return [
     '/create/book_store'=>[\App\Controllers\RegisterController::class, 'createUser'],
     '/validate'=>[\App\Controllers\AuthController::class,'verifyLogin'],
     '/register'=>[\App\Controllers\RegisterController::class, 'register'],
+    '/logout'=> [\App\Controllers\HomeController::class, 'abort'],
+    '/dashboard/add'=>[\App\Controllers\HomeController::class, 'addBook'],
     '/'=>[\App\Controllers\AuthController::class,'login'],
 ];

@@ -18,7 +18,6 @@ class UsersRepository
     {
         $user->created_at = date('Y-m-d h:m:s');
         $user->updated_at = date('Y-m-d h:m:s');
-        $user->password = make_hash($user->password);
         return $this->access->getAccess('users')->create($user);
     }
 
@@ -29,7 +28,6 @@ class UsersRepository
         if(empty($user)) return false;
 
         $session = new Session;
-
         $session->set('first_name', $user->first_name);
         $session->set('last_name', $user->last_name);
         $session->set('email', $user->email);

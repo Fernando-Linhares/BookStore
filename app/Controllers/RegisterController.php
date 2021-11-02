@@ -20,11 +20,11 @@ class RegisterController extends BaseController
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->email = $request->email;
-        $user->password = $request->password;
-
+        $user->password = make_hash($request->password);
+        
         if($this->getRepository('users')->create($user))
             return view('auth/register/success');
-        
+    
        return view('auth/register/error');
     }
 }

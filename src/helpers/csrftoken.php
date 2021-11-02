@@ -27,6 +27,5 @@ function generate_key()
 
 function make_hash(string $text): string
 {
-    $criptLib = new Application\Cripto\Crypt;
-    return $criptLib->encrypt($text);
+    return password_hash($text, PASSWORD_DEFAULT);
 }

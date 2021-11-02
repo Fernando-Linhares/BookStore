@@ -32,5 +32,5 @@ class Session
     public function destroy(): bool
     {
         return session_destroy();
-    }
+    } 
 }

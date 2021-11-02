@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use Application\Mvc\Controllers\BaseController;
 use Application\Sessions\Session;
+use Application\Guards\Guard;
 
 class HomeController extends BaseController
 {
@@ -11,15 +12,16 @@ class HomeController extends BaseController
     public function __construct()
     {
         $this->session = new Session;
+        Guard::auth($this->session);
     }
 
     public function index()
     {
         $user = $this->session->all();
-    
         $books = $this->getRepository('book')->getAll();
 
-        dd($user);
+        if(empty($books)) $books = 'add more books';
+    
         return view(
             'app/panel', [
                 'title'=>'home page',
@@ -36,8 +38,13 @@ class HomeController extends BaseController
         return view('app/select', ['title'=>'book '.$book->title, 'book'=> $book]);
     }
     
+    public function addBook()
+    {
+        return view('app/create');
+    }
+
     public function abort()
     {
-        if($this->session->destroy()) die('aborted session');
+        if($this->session->destroy()) return redirect('/');
     }
 }

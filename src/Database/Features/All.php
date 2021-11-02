@@ -22,6 +22,7 @@ class All
     public function getAll(string $classname)
     {
         $statement = $this->pdo->prepare($this->query);
+        $statement->execute();
         $fetch = new Fetch($statement);
         return $fetch->fetchClass($classname);
     }

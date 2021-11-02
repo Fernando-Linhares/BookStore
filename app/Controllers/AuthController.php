@@ -2,7 +2,6 @@
 namespace App\Controllers;
 
 use Application\Mvc\Controllers\BaseController;
-use Application\Sessions\Session;
 
 class AuthController extends BaseController
 {
@@ -22,6 +21,6 @@ class AuthController extends BaseController
             return redirect('/dashboard');
         }
 
-        return view('auth/error');
+        return die('error');// view('auth/error');
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+include __DIR__.'/appinfo.php';
 include __DIR__.'/database.php';
 include __DIR__.'/csrftoken.php';
 
@@ -71,9 +72,7 @@ function path(string $path): string
 
 function check_password(string $password_from_database, string $password_from_request): bool
 {
-   $cryptLib = new Application\Cripto\Crypt;
-   $password_decrypted = $cryptLib->decrypt($password_from_database);
-   return $password_decrypted === $password_from_request;
+    return password_verify($password_from_request, $password_from_database);
 }
 
 function nonce_regenerate()

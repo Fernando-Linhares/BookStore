@@ -11,14 +11,46 @@
     <header>
         <?= $this->include('app/header') ?>
     </header>
-    <div style="margin:auto; text-align: right;">
-        <a href="" class="btn btn-sm m-2 p-2 btn-outline-danger">exit</a>
+    <div style="width: 300px; height: 100px; border-radius: 0 30px 30px 0;" class="card-panel purple lighten-3">
+    <div class="row">
+        <div class="col s4">
+            <div class="btn-floating btn-large waves-effect waves-light black">
+                <?php if(empty($this->data->user->image)):?>
+                    <i class="material-icons">person</i>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="col s4">
+            <div>
+                <?= $this->data->user->first_name .'&nbsp&nbsp' . $this->data->user->last_name?>
+                <div style="margin-top: 5px; ;">
+                    <a class="btn red" href="logout"><i class="material-icons">arrow_back</i></a>
+                </div>
+            </div>
+        </div>
     </div>
+       
+    </div>
+      <div class="container">
+        <div class="card-panel">
+            <div>
+                <div >
+                    <a class="btn green" href="/dashboard/add">
+                        <i class="material-icons">add</i>
+                    </a>    
+                </div>
+                <div class="green-text">
+                    Add books
+                </div>
+            </div>
+            <div class="card red lighten-4" style="padding: 30px;">
+                
+                <?php if(is_string($this->data->books)): ?>
+                    <div class="red-text center-align">
+                        <?= ucfirst($this->data->books) ?>
+                    </div>
+                <?php else: ?>
 
-    <div class="container ">
-        <div class="card card-border">
-           
-            <div class="card-body">
                 <?php foreach($this->data->books as $book): ?>
                 <div class="card card-border w-10 d-inline-block p-3 m-3" >
                     <div class="card-title">
@@ -29,23 +61,23 @@
                         <hr>
                         <div>author: <?= $book->author->first_name . $book->author->last_name ?></div>
                         <hr>
-                        <a class="btn btn-success" href="/rental/<?= $book->id ?>">location</a>
+                        <a class="btn" href="/rental/<?= $book->id ?>">location</a>
                     </div>
                 </div>
                 <?php endforeach; ?>
+    
+                <?php endif; ?>
             </div>
             <div style="margin: auto; text-align: center;">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li class="page-item"><a href="" class="page-link">Previous</a></li>
-                        <li class="page-item active"><a href="" class="page-link">1</a></li>
-                        <li class="page-item"><a href="" class="page-link">2</a></li>
-                        <li class="page-item"><a href="" class="page-link">3</a></li>
-                        <li class="page-item"><a href="" class="page-link">4</a></li>
-                        <li class="page-item"><a href="" class="page-link">Next</a></li>
-
-                    </ul>
-                </nav>
+                <ul class="pagination">
+                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                    <li class="active"><a href="#!">1</a></li>
+                    <li class="waves-effect"><a href="#!">2</a></li>
+                    <li class="waves-effect"><a href="#!">3</a></li>
+                    <li class="waves-effect"><a href="#!">4</a></li>
+                    <li class="waves-effect"><a href="#!">5</a></li>
+                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                </ul>
             </div>
             </div>
     </div>
