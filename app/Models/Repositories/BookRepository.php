@@ -7,6 +7,7 @@ use App\Models\Entity\{
     BooksCategories,
     Category
 };
+use App\Models\Entity\Group\BooksGroup;
 
 class BookRepository
 {
@@ -21,7 +22,12 @@ class BookRepository
 
     public function getAll()
     {
-        // return $this->book->join(Author::class)->join(Category::class)->join(BooksCategories::class);
+        return $this->book
+        ->join(Author::class)
+        ->join(Category::class)
+        ->join(Description::class)
+        ->join(BooksCategories::class)
+        ->get(BooksGroup::class);
     }
 
     public function join(string $entityName)

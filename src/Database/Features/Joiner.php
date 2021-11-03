@@ -29,12 +29,12 @@ class Joiner
     }
 
 
-    public function get()
+    public function get(string $classname)
     {
         $statement = $this->pdo->prepare((string) $this->builder);
         $statement->execute();
         $fetch = new Fetch($statement);
-        return $fetch->fetchGroup();
+        return $fetch->fetchClass($classname);
     }
 
     private function getPrimaryKey(string $table): string

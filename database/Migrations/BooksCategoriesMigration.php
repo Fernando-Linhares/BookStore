@@ -10,7 +10,7 @@ class BooksCategoriesMigration extends BaseMigration implements Migrable
     public function up()
     {
         //implements here your schema
-        return $this->table("books_categories")
+        return $this->table("books_category")
         ->id()
         ->int('category_id')
         ->int('book_id')

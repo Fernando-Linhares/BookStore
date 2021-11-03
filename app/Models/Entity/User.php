@@ -12,6 +12,8 @@ class User extends BaseModel
 
     public string $last_name;
 
+    public string $image = 'none';
+
     public string $email;
 
     public string $password;

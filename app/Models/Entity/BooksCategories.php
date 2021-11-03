@@ -12,5 +12,5 @@ class BooksCategories extends BaseModel
 
     public int $book_id;
 
-    public string $table = 'books_categories';
+    public string $table = 'books_category';
 }

@@ -20,9 +20,8 @@ class HomeController extends BaseController
 
     public function index()
     {
-
-        dd($this->getRepository(Book::class)->getAll());
-        // $books = $this->getRepository(Book::class)->join(Author::class)->get();
+        // dd($this->getRepository(Book::class)->getAll());
+        $books = null;//$this->getRepository(Book::class)->join(Author::class)->get();
     
         if(empty($books)) $books = 'add more books';
     

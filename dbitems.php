@@ -55,6 +55,7 @@ return [
         [
             'first_name'=>'admin',
             'last_name'=>'adm',
+            'image'=>'none',
             'email'=>'admin@gmail.com',
             'password'=>'abc123',
             'created_at'=>'2021-10-26',
