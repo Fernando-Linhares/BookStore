@@ -12,7 +12,6 @@ class RollBacker
         $this->pdo = $pdo;
     }
 
-
     public function rollBack(Migrable $migration): bool
     {
         if($this->pdo->query($migration->down())) return true;

@@ -5,28 +5,32 @@ use App\Models\Entity\{
     Book,
     Author,
     BooksCategories,
-    Category
+    Category,
+    Description
 };
+
 use App\Models\Entity\Group\BooksGroup;
 
 class BookRepository
 {
     private Book $book;
     private Author $author;
+    private BooksCategories $bookscategories;
 
     public function __construct()
     {
         $this->author = new Author;
         $this->book = new Book;
+        $this->bookscategories = new BooksCategories;
     }
 
     public function getAll()
     {
-        return $this->book
+        return $this->bookscategories
+        ->join(Book::class)
         ->join(Author::class)
         ->join(Category::class)
         ->join(Description::class)
-        ->join(BooksCategories::class)
         ->get(BooksGroup::class);
     }
 

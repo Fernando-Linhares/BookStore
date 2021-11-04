@@ -22,7 +22,7 @@ class BooksCategoriesMigration extends BaseMigration implements Migrable
     public function down()
     {
         //drop here your schema
-        return $this->drop('books_categories');
+        return $this->drop('books_category');
     }
 }
     

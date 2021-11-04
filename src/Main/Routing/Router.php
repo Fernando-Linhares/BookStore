@@ -33,14 +33,6 @@ class Router
                     $component->getArgs()
                 );
             }
-
-        if($component->hasKeys()){
-            return $this->callActionWithArgs(
-                $this->getInstance($component->getController()),
-                $component->getAction(),
-                $component->getArgs()
-            );
-        }
         
         return $this->callAction(
             $this->getInstance($component->getController()),

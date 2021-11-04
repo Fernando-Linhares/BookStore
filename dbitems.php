@@ -10,37 +10,48 @@ return [
         [
            'title' =>'Harry Potter e a pedra filosofal',
            'book_cover'=> 'assets/images/harryporter1.png',
+           'description_id'=>1,
             'author_id'=>1,
             'published_at'=>'1998-02-23'
         ],
         [
             'title' =>'Harry Potter e a pedra filosofal',
             'book_cover'=> 'assets/images/harryporter2.png',
-             'author_id'=>1,
-             'published_at'=>'1998-02-23'
+            'description_id'=>2,
+            'author_id'=>1,
+            'published_at'=>'1998-02-23'
          ],
          [
             'title' =>'Harry Potter e a pedra filosofal',
             'book_cover'=> 'assets/images/harryporter3.png',
-             'author_id'=>1,
-             'published_at'=>'1998-02-23'
+            'description_id'=>3,
+            'author_id'=>1,
+            'published_at'=>'1998-02-23'
          ],
          [
             'title' =>'Harry Potter e a pedra filosofal',
             'book_cover'=> 'assets/images/harryporter4.png',
-             'author_id'=>1,
-             'published_at'=>'1998-02-23'
+            'description_id'=>1,
+            'author_id'=>1,
+            'published_at'=>'1998-02-23'
          ],
+         
     ],
-    'books_categories'=>[
-        [2,1],
-        [2,2],
-        [2,3],
-        [2,4]
+    'books_category'=>[
+        ['category_id'=>2,'book_id'=>1],
+        ['category_id'=>2,'book_id'=>2],
+        ['category_id'=>2,'book_id'=>3],
+        ['category_id'=>2,'book_id'=>4],
     ],
     'categories'=>[
-        ['terror'],
-        ['fantasy'],
+        ['name'=>'terror'],
+        ['name'=>'fantasy'],
+        ['name'=>'romance'],
+        ['name'=>'comedy'],
+        ['name'=>'science ficction'],
+        ['name'=>'drama'],
+        ['name'=>'classic'],
+
     ],
     'costumers'=>[
         [],
@@ -62,4 +73,10 @@ return [
             'updated_at'=>'2021-10-26'
         ],
     ],
+    'description'=>[
+        ['content'=>' random words  '],
+        ['content'=>' random words  '],
+        ['content'=>' random words  '],
+        ['content'=>' random words  '],
+    ]
 ];

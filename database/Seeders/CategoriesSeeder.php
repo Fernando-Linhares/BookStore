@@ -8,10 +8,11 @@ class CategoriesSeeder extends Seeder
 {
     public function update()
     {
-        foreach(generate('categories') as $data){
-            $instance = new Category(...$data);
-            $instance->save();
-        }
+            foreach(get_from_file('../dbitems.php',"categories") as $data){
+                $instance = new Category;
+                $instance->name = $data['name'];
+                $instance->save();
+            }
     }
 }
     

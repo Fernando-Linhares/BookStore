@@ -20,9 +20,7 @@ class HomeController extends BaseController
 
     public function index()
     {
-        // dd($this->getRepository(Book::class)->getAll());
-        $books = null;//$this->getRepository(Book::class)->join(Author::class)->get();
-    
+        $books = $this->getRepository(Book::class)->getAll();
         if(empty($books)) $books = 'add more books';
     
         return view(
@@ -44,6 +42,7 @@ class HomeController extends BaseController
     
     public function addBook()
     {
+        die('ok');
         return view('app/create');
     }
 

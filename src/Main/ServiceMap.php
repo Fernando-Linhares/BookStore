@@ -8,6 +8,7 @@ abstract class ServiceMap
     public function getRoutesMapped()
     {
         $routes = include '../routes/routes.php';
+
         foreach($routes as $key=>$value){
             $mapRouter[] = $this->getMapRouter(
                 $key,

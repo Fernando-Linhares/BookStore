@@ -14,10 +14,10 @@ function seed(string $seeder){
    try{
        $instance->update();
     }catch(Exception $excpt){    
-        $message->danger("error on seed\n{$excpt->getMessage()}"); die;
+        $message->danger("error on seed\n{$excpt->getMessage()}");die;
     }
 
-   $message->success("seeded successfully"); die;
+   $message->success("seeded successfully");
 }
 
 function call_down(string $classname)

@@ -3,6 +3,7 @@
 require '../src/helpers/helpers.php';
 require "../vendor/autoload.php";
 require '../config/config.php';
-foreach(require '../config/seeders.php' as $seeders){
-    seed($seeders);
+$seeders = require '../config/seeders.php';
+foreach($seeders as $seeder){
+    seed($seeder);
 }

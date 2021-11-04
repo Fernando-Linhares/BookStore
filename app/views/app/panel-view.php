@@ -55,19 +55,20 @@
                         <div class="col s12 m7">
                             <div class="card horizontal">
                             <div class="card-image">
-                                <img src="<?= $book->book_cover ?>">
+                                <img src="<?= $book->getImage() ?>">
                             </div>
                             <div class="card-stacked">
                                 <div class="card-content">
-                                <h4>
-                                     <?= $book->title ?>
-                                </h4>
-                                    <button class="btn red">fantasy</button>
-                                    <button class="btn purple darken-3">terror</button>
-
+                                    <h4>
+                                        <?= $book->getTitle() ?>
+                                    </h4>
+                                    <p>
+                                        <?= $book->getResume() ?>
+                                    </p>
+                                    <button class="btn red"><?= $book->getCategory() ?></button>
                                 </div>
                                 <div class="card-action"> 
-                                <a  href="/rental/<?= $book->id ?>">rental</a>
+                                <a  href="/rental/<?= $book->getBookId() ?>">rental</a>
                                 </div>
                             </div>
                             </div>
