@@ -23,4 +23,24 @@ class User extends BaseModel
     public string $updated_at;
 
     public string $table = 'users';
+
+    public function getUserName()
+    {
+        return $this->first_name .'&nbsp&nbsp'. $this->last_name;
+    }
+
+    public function setFirstName(string $first_name)
+    {
+        $this->first_name = $first_name;
+    }
+
+    public function setLastName(string $last_name)
+    {
+        $this->last_name = $last_name;
+    }
+
+    public function setEmail(string $email)
+    {
+        $this->email = $email;
+    }
 }

@@ -14,6 +14,16 @@ class Session
         return (object) $_SESSION;
     }
 
+    public function setUser(\App\Models\Entity\User $user): void
+    {
+        $_SESSION['user'] = $user;
+    }
+
+    public function getUser(): \App\Models\Entity\User
+    {
+        return $_SESSION['user'];
+    }
+
     public function get($key)
     {
         return $_SESSION[$key];

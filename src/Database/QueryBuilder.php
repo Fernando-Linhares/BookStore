@@ -77,6 +77,12 @@ class QueryBuilder
         return $this;
     }
 
+    public function limit(int $limit, int $offset)
+    {
+        $this->query .= " LIMIT $limit OFFSET $offset";
+        return $this;
+    }
+
     public function __toString()
     {
         return $this->query;

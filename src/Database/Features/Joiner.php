@@ -2,6 +2,7 @@
 namespace Application\Database\Features;
 
 use Application\Database\QueryBuilder;
+use Application\Pagination\Paginator;
 
 class Joiner
 {
@@ -29,12 +30,30 @@ class Joiner
     }
 
 
-    public function get(string $classname)
+    public function get(?string $classname=null)
     {
         $statement = $this->pdo->prepare((string) $this->builder);
         $statement->execute();
         $fetch = new Fetch($statement);
+
+        if(empty($classname))
+            return $fetch->fetchAll();
+
         return $fetch->fetchClass($classname);
+    }
+
+    public function paginate(int $limit ,int $offset, ?string $classname=null)
+    {
+        $query = Paginator::paginate($this->builder, $limit, $offset);
+        $statement = $this->pdo->prepare((string) $query);
+        $statement->execute();
+        $fetch = new Fetch($statement);
+
+        if(empty($classname))
+            return $fetch->fetchAll();
+
+        return $fetch->fetchClass($classname);
+
     }
 
     private function getPrimaryKey(string $table): string

@@ -21,13 +21,14 @@ class HomeController extends BaseController
     public function index()
     {
         $books = $this->getRepository(Book::class)->getAll();
+
         if(empty($books)) $books = 'add more books';
     
         return view(
             'app/panel', [
                 'title'=>'home page',
                 'books'=>$books,
-                'user'=> $this->session->all()
+                'user'=> $this->session->getUser()
                 ]
             );
     }

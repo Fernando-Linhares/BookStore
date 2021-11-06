@@ -10,6 +10,7 @@ use Application\Database\Features\Has;
 use Application\Database\Features\RollBacker;
 use Application\Database\Features\Updator;
 use Application\Database\Features\Joiner;
+use Application\Pagination\Paginator;
 
 class AccessToDatabase
 {
@@ -69,6 +70,12 @@ class AccessToDatabase
         return $this->all->getAll($classname);
     }
    
+
+    public function count(): int
+    {
+        return $this->all->count();
+    }
+
     public function hasOne()
     {
         return $this->has->hasOne();

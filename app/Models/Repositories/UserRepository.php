@@ -31,9 +31,8 @@ class UserRepository
         if(empty($user)) return false;
 
         $session = new Session;
-        $session->set('first_name', $user->first_name);
-        $session->set('last_name', $user->last_name);
-        $session->set('email', $user->email);
+        
+        $session->setUser($user);
 
         return check_password($user->password, $data->password);
     }

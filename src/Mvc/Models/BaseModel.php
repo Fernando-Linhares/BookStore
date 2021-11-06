@@ -30,6 +30,11 @@ abstract class BaseModel
         return $this->getAccessInstance($this->table)->hasOne();
     }
 
+    public function count(): int
+    {
+        return $this->getAccessInstance($this->table)->count();
+    }
+
     public function join(string $nameEntity)
     {   
         return $this->getAccessInstance($this->table)->join($nameEntity);

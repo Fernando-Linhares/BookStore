@@ -3,6 +3,7 @@
 include __DIR__.'/appinfo.php';
 include __DIR__.'/database.php';
 include __DIR__.'/csrftoken.php';
+include __DIR__.'test';
 
 function view(string $name,$data=null): void
 {

@@ -31,7 +31,7 @@ class BookRepository
         ->join(Author::class)
         ->join(Category::class)
         ->join(Description::class)
-        ->get(BooksGroup::class);
+        ->paginate(3 ,1, BooksGroup::class);
     }
 
     public function join(string $entityName)

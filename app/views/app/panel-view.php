@@ -22,7 +22,7 @@
         </div>
         <div class="col s4">
             <div>
-                <?= $this->data->user->first_name .'&nbsp&nbsp' . $this->data->user->last_name?>
+                <?= $this->data->user->getUserName() ?>
                 <div style="margin-top: 5px; ;">
                     <a class="btn red" href="logout"><i class="material-icons">arrow_back</i></a>
                 </div>
