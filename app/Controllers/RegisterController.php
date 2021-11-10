@@ -2,19 +2,23 @@
 namespace App\Controllers;
 
 use App\Models\Entity\User;
+use Application\Router\Request\Request;
 use Application\Mvc\Controllers\BaseController;
+use App\Models\Repositories\UserRepository;
 
 class RegisterController extends BaseController
 {
+    public function __construct(
+        private UserRepository $repository
+    ){}
+
     public function createUser()
     {
         return view('auth/register/create');
     }
 
-    public function register()
+    public function register(Request $request)
     {
-        $request = request();
-
         $user = new User;
 
         $user->first_name = $request->first_name;
@@ -22,8 +26,8 @@ class RegisterController extends BaseController
         $user->email = $request->email;
         $user->password = make_hash($request->password);
         
-        if($this->getRepository(User::class)->create($user))
-            return view('auth/register/success');
+        if($this->repository->create($user))
+            return redirect('/dashboard');
     
        return view('auth/register/error');
     }

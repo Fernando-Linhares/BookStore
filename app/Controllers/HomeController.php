@@ -4,30 +4,27 @@ namespace App\Controllers;
 use App\Models\Entity\Author;
 use App\Models\Entity\Book;
 use App\Models\Entity\Category;
+use App\Models\Repositories\BookRepository;
 use Application\Mvc\Controllers\BaseController;
 use Application\Sessions\Session;
 use Application\Guards\Guard;
+use Application\Router\Request\Request;
 
 class HomeController extends BaseController
 {
-    // private const LIMIT_ITEMS = 3;
-    private Session $session;
+    private const LIMIT_ITEMS = 3;
+    
 
-    public function __construct()
+    public function __construct(private Session $session)
     {
-        $this->session = new Session;
-        // Guard::auth($this->session);
+        Guard::auth($this->session);
     }
 
-    public function test()
-    {
-        dd(DATABASE,USER,PASSWORD);
-    }
 
     public function index()
     {
         $offset = 1;
-        $limit = 9;//self::LIMIT_ITEMS;
+        $limit = self::LIMIT_ITEMS;
 
         $books = $this->getRepository(Book::class)->getAllPaginated($limit, $offset);
 

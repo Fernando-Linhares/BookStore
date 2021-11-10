@@ -19,4 +19,9 @@ class ArgumentsHttp implements ArgumentsHttpInterface
     {
         $GLOBALS['args']->$name = $value;
     }
+
+    public function __destruct()
+    {
+        unset($GLOBALS['args']);
+    }
 }

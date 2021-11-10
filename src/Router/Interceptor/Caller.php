@@ -38,6 +38,4 @@ class Caller
     {
         return explode(':', $hander);
     }
-
- 
 }

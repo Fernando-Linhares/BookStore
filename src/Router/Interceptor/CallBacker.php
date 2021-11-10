@@ -17,7 +17,6 @@ class CallBacker implements CallBackerInterface
 
     public function callControllerWithDependence(string $controller, ...$dependences)
     {
-        // var_dump($controller,$dependences);
         return $this->containerFactory
         ->getContainer()
         ->get($controller)

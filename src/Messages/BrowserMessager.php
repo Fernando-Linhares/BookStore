@@ -5,6 +5,6 @@ class BrowserMessager
 {
     public function span(string $text)
     {
-        return view('error/span', ['message'=>$text]);
+        return die(view('error/span', ['message'=>$text]));
     }
 }

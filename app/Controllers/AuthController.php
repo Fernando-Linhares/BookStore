@@ -1,11 +1,16 @@
 <?php
 namespace App\Controllers;
 
-use App\Models\Entity\User;
 use Application\Mvc\Controllers\BaseController;
+use Application\Router\Request\Request;
+use App\Models\Repositories\UserRepository;
 
 class AuthController extends BaseController
 {
+    public function __construct(
+        private UserRepository $repository
+    ){}
+
     public function login()
     {
         if(hasAnyUser())
@@ -14,12 +19,10 @@ class AuthController extends BaseController
         return view('auth/login');
     }
 
-    public function verifyLogin()
+    public function verifyLogin(Request $request)
     {
-        $request = request();
-        if($this->getRepository(User::class)->verify($request)){
+        if($this->repository->verify($request))
             return redirect('/dashboard');
-        }
 
         return die('error');// view('auth/error');
     }

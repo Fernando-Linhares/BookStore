@@ -18,7 +18,6 @@ class UserRepository
 
     public function create(User $user)
     {
-        
         $user->created_at = date('Y-m-d h:m:s');
         $user->updated_at = date('Y-m-d h:m:s');
         return $this->access->getAccess('users')->create($user);

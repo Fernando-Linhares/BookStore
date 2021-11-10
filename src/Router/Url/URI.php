@@ -15,6 +15,7 @@ class URI
         $this->factoryRegex = new FactoryRegex;
         $this->url = $_SERVER['REQUEST_URI'];
         $this->method = $_SERVER['REQUEST_METHOD'];
+        if($this->method !== 'GET') unset($GLOBALS['args']);
     }
 
     public function routeMatch(string $route):bool
