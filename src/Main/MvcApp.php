@@ -3,8 +3,11 @@ namespace Application\Main;
 
 class MvcApp
 {
+    /**
+     * @render all middleawres
+     */
     public static function render()
     {
-        return Manager::all()->getRoutines();
+        Middleware\Middleware::load();
     }
 }

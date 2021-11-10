@@ -14,7 +14,7 @@ switch($input)
         $command = "cd bin/;php migration {$argv[2]}";
     break;
     case 'server':
-        $command = 'cd bin/;php server ';
+        $command = 'php -S localhost -t public/ ';
     break;
     case 'test':
         $command = 'php bin/test';

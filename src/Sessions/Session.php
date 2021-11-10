@@ -24,6 +24,11 @@ class Session
         return $_SESSION['user'];
     }
 
+    public function hasUser()
+    {
+        return isset($_SESSION['user']);
+    }
+
     public function get($key)
     {
         return $_SESSION[$key];

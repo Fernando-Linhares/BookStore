@@ -10,17 +10,45 @@ use Application\Guards\Guard;
 
 class HomeController extends BaseController
 {
+    // private const LIMIT_ITEMS = 3;
     private Session $session;
 
     public function __construct()
     {
         $this->session = new Session;
-        Guard::auth($this->session);
+        // Guard::auth($this->session);
+    }
+
+    public function test()
+    {
+        dd(DATABASE,USER,PASSWORD);
     }
 
     public function index()
     {
-        $books = $this->getRepository(Book::class)->getAll();
+        $offset = 1;
+        $limit = 9;//self::LIMIT_ITEMS;
+
+        $books = $this->getRepository(Book::class)->getAllPaginated($limit, $offset);
+
+        if(empty($books)) $books = 'add more books';
+    
+        return view(
+            'app/panel', [
+                'title'=>'home page',
+                'books'=>$books,
+                'user'=> $this->session->getUser()
+                ]
+            );
+    }
+
+    public function nextPage($request)
+    {
+        $limit = 0;//self::LIMIT_ITEMS;
+
+        $offset = $request->page;
+    
+        $books = $this->getRepository(Book::class)->getAllPaginated($limit, $offset);
 
         if(empty($books)) $books = 'add more books';
     

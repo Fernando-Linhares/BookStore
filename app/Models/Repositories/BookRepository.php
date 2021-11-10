@@ -24,14 +24,14 @@ class BookRepository
         $this->bookscategories = new BooksCategories;
     }
 
-    public function getAll()
+    public function getAllPaginated(int $limit, int $offset)
     {
         return $this->bookscategories
         ->join(Book::class)
         ->join(Author::class)
         ->join(Category::class)
         ->join(Description::class)
-        ->paginate(3 ,1, BooksGroup::class);
+        ->paginate($limit, $offset, BooksGroup::class);
     }
 
     public function join(string $entityName)
@@ -54,5 +54,4 @@ class BookRepository
         $author_id = $this->book->author_id;
         return $this->author->find($author_id);
     }
-
 }

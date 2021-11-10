@@ -3,12 +3,22 @@
 include __DIR__.'/appinfo.php';
 include __DIR__.'/database.php';
 include __DIR__.'/csrftoken.php';
-include __DIR__.'test';
 
 function view(string $name,$data=null): void
 {
     $views = new Application\Mvc\View\ViewLable;
     $views->setView($name)->with($data)->render();
+}
+
+function middlewares(): array
+{
+    return include '../config/middlewares.php';
+}
+
+function execute_app(\Application\Main\Middleware\HandlerInterface $routine)
+{
+    $routine = new $routine();
+    return $routine->handle();
 }
 
 function hasAnyUser(): bool
