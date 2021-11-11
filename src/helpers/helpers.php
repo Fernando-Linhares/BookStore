@@ -15,6 +15,11 @@ function middlewares(): array
     return include '../config/middlewares.php';
 }
 
+function route(string $route, int|string $parameter)
+{
+    return URL .$parameter.'/'.$route;
+}
+
 function execute_app(\Application\Main\Middleware\HandlerInterface $routine)
 {
     $routine = new $routine();

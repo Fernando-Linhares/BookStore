@@ -15,11 +15,11 @@ class ActionBuilder
 
     public function set(object $controller,string $action)
     {
-        if($this->hasParameters($controller,$action))
-            return $this->callWithParameters($controller,$action);
-
         if($this->hasArgs())
             return $this->callActionWithArgs($controller,$action);
+
+        if($this->hasParameters($controller,$action))
+            return $this->callWithParameters($controller,$action);
 
 
         return $this->callNormaly($controller,$action);

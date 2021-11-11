@@ -1,0 +1,1 @@
+user|O:22:"App\Models\Entity\User":9:{s:2:"id";i:2;s:10:"first_name";s:8:"Fernando";s:9:"last_name";s:9:"Silvestre";s:5:"image";s:4:"none";s:5:"email";s:21:"mr.comando@bol.com.br";s:8:"password";s:60:"$2y$10$LB3ysGtJ.dmqlkCI0Zt6WeDPUoIbm9qMRIgPbHrvq9yeQzajFnpiS";s:10:"created_at";s:19:"2021-11-09 10:11:19";s:10:"updated_at";s:19:"2021-11-09 10:11:20";s:5:"table";s:5:"users";}

@@ -12,55 +12,60 @@ use Application\Router\Request\Request;
 
 class HomeController extends BaseController
 {
-    private const LIMIT_ITEMS = 3;
-    
-
-    public function __construct(private Session $session)
+    public function __construct(
+        private Session $session,
+        private BookRepository $repository
+        )
     {
         Guard::auth($this->session);
     }
 
-
     public function index()
     {
-        $offset = 1;
-        $limit = self::LIMIT_ITEMS;
+        $offset = 0;
+        $limit = 10;
 
-        $books = $this->getRepository(Book::class)->getAllPaginated($limit, $offset);
+        $books = $this->repository->getAllPaginated($limit, $offset);
 
+        
+        $pages = $this->repository->getPages($limit,$offset)->getLinks();
+
+        dd($pages);
         if(empty($books)) $books = 'add more books';
-    
+
         return view(
             'app/panel', [
                 'title'=>'home page',
                 'books'=>$books,
-                'user'=> $this->session->getUser()
+                'user'=> $this->session->getUser(),
+                'pages'=>$pages
                 ]
             );
     }
 
-    public function nextPage($request)
+    public function nextPage(int $page)
     {
-        $limit = 0;//self::LIMIT_ITEMS;
+        $limit = 10;
 
-        $offset = $request->page;
-    
-        $books = $this->getRepository(Book::class)->getAllPaginated($limit, $offset);
+        $books = $this->repository->getAllPaginated($limit, $page * $limit);
 
         if(empty($books)) $books = 'add more books';
     
+        $pages = $this->repository->getPages(10, $page)->getLinks();
+
+        // dd($pages);
         return view(
             'app/panel', [
                 'title'=>'home page',
                 'books'=>$books,
-                'user'=> $this->session->getUser()
+                'user'=> $this->session->getUser(),
+                'pages'=>$pages
                 ]
             );
     }
 
-    public function select($request)
+    public function select(int $id)
     {
-        $id = (int) $request->id;
         $book = $this->getRepository(Book::class)->find($id);
         dd($book);
         return view('app/select', ['title'=>'book '.$book->title, 'book'=> $book]);
@@ -68,7 +73,6 @@ class HomeController extends BaseController
     
     public function addBook()
     {
-        die('ok');
         return view('app/create');
     }
 

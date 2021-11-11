@@ -19,6 +19,8 @@ class DescriptionsMigration extends BaseMigration implements Migrable
         return $this->table("descriptions")
         ->id()
         ->text('content')
+        ->int('book_id')
+        ->relation('book_id')
         ->create();
     }
 

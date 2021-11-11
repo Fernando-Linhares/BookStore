@@ -9,5 +9,7 @@ class Description extends BaseModel
 
     public string $content;
 
+    public int $book_id;
+
     public string $table = 'descriptions';
 }

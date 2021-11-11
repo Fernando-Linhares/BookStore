@@ -10,6 +10,7 @@ use App\Models\Entity\{
 };
 
 use App\Models\Entity\Group\BooksGroup;
+use Application\Pagination\Pages;
 
 class BookRepository
 {
@@ -32,6 +33,11 @@ class BookRepository
         ->join(Category::class)
         ->join(Description::class)
         ->paginate($limit, $offset, BooksGroup::class);
+    }
+
+    public function getPages(int $limit,$page): Pages
+    {
+        return new Pages($this->book->count(), $limit, $page);
     }
 
     public function join(string $entityName)

@@ -49,9 +49,8 @@ class Joiner
         $statement->execute();
         $fetch = new Fetch($statement);
 
-        if(empty($classname))
-            return $fetch->fetchAll();
-
+        if(empty($classname)) return $fetch->fetchAll();
+    
         return $fetch->fetchClass($classname);
 
     }
