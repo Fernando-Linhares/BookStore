@@ -28,7 +28,7 @@ class BooksGroup
 
     public function getImage(): string
     {
-        return $this->book_cover;
+        return assets($this->book_cover);
     }
 
     public function getResume(): string

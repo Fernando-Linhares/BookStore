@@ -25,19 +25,24 @@ class BookRepository
         $this->bookscategories = new BooksCategories;
     }
 
-    public function getAllPaginated(int $limit, int $offset)
+    public function getAllPaginated(int $limit, int $offset=0)
     {
         return $this->bookscategories
         ->join(Book::class)
         ->join(Author::class)
         ->join(Category::class)
         ->join(Description::class)
-        ->paginate($limit, $offset, BooksGroup::class);
+        ->paginate($limit, $offset,new Book ,BooksGroup::class);
     }
 
     public function getPages(int $limit,$page): Pages
     {
         return new Pages($this->book->count(), $limit, $page);
+    }
+
+    public function count()
+    {
+        return $this->book->count();
     }
 
     public function join(string $entityName)

@@ -20,6 +20,11 @@ function route(string $route, int|string $parameter)
     return URL .$parameter.'/'.$route;
 }
 
+function assets($file): string
+{
+    return URL.$file;
+}
+
 function execute_app(\Application\Main\Middleware\HandlerInterface $routine)
 {
     $routine = new $routine();

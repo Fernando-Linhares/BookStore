@@ -2,17 +2,17 @@
 namespace Application\Database\Features;
 
 use Application\Database\QueryBuilder;
-use Application\Pagination\Paginator;
 
 class Joiner
 {
-    private \PDO $pdo;
     private QueryBuilder $builder;
 
-    public function __construct(\PDO $pdo,string $table)
+    public function __construct(
+        private \PDO $pdo,
+        private string $table
+        )
     {
-        $this->pdo = $pdo;
-        $this->builder = $this->getQueryBuilder($table)->select('*');
+        $this->builder = $this->getQueryBuilder($this->table)->select('*');
     }
 
     public function getQueryBuilder(string $table): QueryBuilder
@@ -42,17 +42,15 @@ class Joiner
         return $fetch->fetchClass($classname);
     }
 
-    public function paginate(int $limit ,int $offset, ?string $classname=null)
+    public function paginate(int $limit ,int $offset, object $entity, ?string $classname=null)
     {
-        $query = Paginator::paginate($this->builder, $limit, $offset);
-        $statement = $this->pdo->prepare((string) $query);
-        $statement->execute();
-        $fetch = new Fetch($statement);
-
-        if(empty($classname)) return $fetch->fetchAll();
-    
-        return $fetch->fetchClass($classname);
-
+        return new Paginator(
+            builder:$this->builder,
+            pdo: $this->pdo,
+            entity: $entity,
+            limit: $limit,
+            offset: $offset,
+            classname: $classname);
     }
 
     private function getPrimaryKey(string $table): string

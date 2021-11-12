@@ -2,45 +2,27 @@
 <?php
     
 require "src/helpers/helpers.php";
+require 'vendor/autoload.php';
+
+use Application\Messages\ShellMessager;
 
 $input = $argv[1];
 
-switch($input)
-{
-    case 'migrate':
-        $command = 'cd bin;php migrate';
-    break;
-    case 'migration':
-        $command = "cd bin/;php migration {$argv[2]}";
-    break;
-    case 'server':
-        $command = 'php -S localhost -t public/ ';
-    break;
-    case 'test':
-        $command = 'php bin/test';
-    break;
-    case 'rollback':
-        $command = 'cd bin/;php rollback';
-    break;
-    case 'seeder':
-        $command = "cd bin/;php seeder {$argv[2]}";
-    break;
-    case 'seed':
-        $command = 'cd bin/;php seed';
-    break;
-    case 'up':
-        $command = 'cd bin/;php seed; php migrate';
-    break;
-    case 'both':
-        $command = "cd bin/;php seeder {$argv[2]};php migration {$argv[2]}";
-    break;
-    case 'generate':
-        $command = 'cd bin/;php generate';
-    break;
-    default:
-        throw new Exception('error code '.$argv[1].' is not expected');
-    break;
-}
+$messager = new ShellMessager;
 
+$command = match($input)
+{
+    'migrate' => 'cd bin;php migrate',
+    'migration' => "cd bin/;php migration {$argv[2]}",
+    'server'=>'php -S localhost:8000 -t public/ ',
+    'test'=>'php bin/test',
+    'rollback'=> 'cd bin/;php rollback',
+    'seeder' => "cd bin/;php seeder {$argv[2]}",
+    'seed'  => 'cd bin/;php seed',
+    'up' => 'cd bin/;php seed; php migrate',
+    'both' => "cd bin/;php seeder {$argv[2]};php migration {$argv[2]}",
+    'generate' => 'cd bin/;php generate',
+    default => throw new Exception("Erro command  ( {$input} ) is not expected ")
+};
 
 echo shell_exec($command);

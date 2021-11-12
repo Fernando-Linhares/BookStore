@@ -25,7 +25,7 @@ class UserRepository
 
     public function verify(object $data)
     {
-        $user  = $this->user->where('email' ,$data->email);
+        $user  = $this->user->where('email', $data->email);
 
         if(empty($user)) return false;
 

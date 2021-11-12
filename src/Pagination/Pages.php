@@ -8,8 +8,33 @@ class Pages
         private int $limit,
         private int $page
     ){
-        if($page == 0 OR $page == 1)
-            $page = 1;
+    }
+
+    public function getNextPage(): int
+    {
+        $pagenext = $this->page + 1;
+
+        if($pagenext == 1)
+            return $pagenext + 1;
+        if($this->isFinal($pagenext))
+            return $this->page;
+
+        return $pagenext;
+    }
+
+    private function isFinal(int $page)
+    {
+        $end = $this->total / $this->limit;
+        $end = (int) $end;
+        return $page > $end;
+    }
+
+    public function getBackPage(): int
+    {
+        if($this->page == 1)
+            return $this->page;
+
+        return $this->page - 1;
     }
 
     public function getLinks()
@@ -17,18 +42,22 @@ class Pages
         $all = range(0,$this->total, $this->limit);
 
         $limit = $this->limit;
-
+        
         $selected = $this->page;
 
+        if($selected==0) $selected += 1;
+
         $collectionLinks = array_map(
+
             function($item)use($limit, $selected)
             {
-                return new Links($item,$limit,($item/$limit) == $selected);
+                $is_selected = $item == ($selected * $limit);
+
+                return new Links($item, $limit, $is_selected);
             }
-            ,$all);
+            , $all);
         
         unset($collectionLinks[0]);
-
         return $collectionLinks;
     }
 

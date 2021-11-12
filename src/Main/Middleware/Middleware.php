@@ -7,6 +7,7 @@ class Middleware
 {
     public static function load()
     {
-       return (new HandlerRoute)->handle();
+       return (new HandlerRoute)
+        ->handle();
     }
 }

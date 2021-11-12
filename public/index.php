@@ -1,5 +1,4 @@
 <?php
-
 /**
  *   Here is where all code of application is rendering.
  * the page root where all dependences is loaded and where
@@ -18,8 +17,9 @@ require __DIR__.'/../vendor/autoload.php';
 require __DIR__.'/../src/helpers/helpers.php';
 require __DIR__.'/../config/config.php';
 
+ini_set('display_errors',DEBUG);
+
+
 use Application\Main\MvcApp as Kernel;
 
 Kernel::render();
-
-// dd(DATABASE);

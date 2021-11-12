@@ -1,3 +1,5 @@
+<?php //dd($this->data->pages); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,15 +82,13 @@
 
             <div style="margin: auto; text-align: center;">
                 <ul class="pagination">
-                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                    <?php foreach($this->data->pages as $page ): ?>
+                    <li ><a href="<?= route('dashboard',$this->data->pages->getBackPage()) ?>"><i class="material-icons">chevron_left</i></a></li>
+                    <?php foreach($this->data->pages->getLinks() as $page ): ?>
                         <li <?= $page->getClass() ?>>
-                            <a href="<?= route('dashboard',$page->link()) ?>">
-                                <?= $page->link() ?>
-                            </a>
+                            <a href="<?= route('dashboard',$page->link()) ?>"> <?= $page->link() ?> </a>
                         </li>
                     <?php endforeach; ?>
-                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                    <li class="waves-effect"><a href="<?= route('dashboard',$this->data->pages->getNextPage()) ?>"><i class="material-icons">chevron_right</i></a></li>
                 </ul>
             </div>
             </div>
