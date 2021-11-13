@@ -1,4 +1,3 @@
-<?php //dd($this->data->pages); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $this->data->title ?></title>
+    <title><?= $this->title ?></title>
     <?= $this->getDependences() ?>
 </head>
 <body style="background-color: rgb(230,230,230);">
@@ -17,14 +16,14 @@
     <div class="row">
         <div class="col s4">
             <div class="btn-floating btn-large waves-effect waves-light black">
-                <?php if(empty($this->data->user->image)):?>
+                <?php if(empty($this->user->image)):?>
                     <i class="material-icons">person</i>
                 <?php endif; ?>
             </div>
         </div>
         <div class="col s4">
             <div>
-                <?= $this->data->user->getUserName() ?>
+                <?= $this->user->getUserName() ?>
                 <div style="margin-top: 5px; ;">
                     <a class="btn red" href="logout"><i class="material-icons">arrow_back</i></a>
                 </div>
@@ -37,7 +36,7 @@
         <div class="card-panel">
             <div>
                 <div >
-                    <a class="btn green" href="/dashboard/add">
+                    <a class="btn green" href="<?= route('/add') ?>">
                         <i class="material-icons">add</i>
                     </a>    
                 </div>
@@ -47,13 +46,13 @@
             </div>
             <div class="card purple lighten-4" style="padding: 30px;">
                 
-                <?php if(is_string($this->data->books)): ?>
+                <?php if(is_string($this->books)): ?>
                     <div class="red-text center-align">
-                        <?= ucfirst($this->data->books) ?>
+                        <?= ucfirst($this->books) ?>
                     </div>
                 <?php else: ?>
 
-                <?php foreach($this->data->books as $book): ?>
+                <?php foreach($this->books as $book): ?>
                         <div class="col s12 m7">
                             <div class="card horizontal">
                             <div class="card-image">
@@ -82,13 +81,13 @@
 
             <div style="margin: auto; text-align: center;">
                 <ul class="pagination">
-                    <li ><a href="<?= route('dashboard',$this->data->pages->getBackPage()) ?>"><i class="material-icons">chevron_left</i></a></li>
-                    <?php foreach($this->data->pages->getLinks() as $page ): ?>
+                    <li ><a href="<?= route('dashboard',$this->pages->getBackPage()) ?>"><i class="material-icons">chevron_left</i></a></li>
+                    <?php foreach($this->pages->getLinks() as $page ): ?>
                         <li <?= $page->getClass() ?>>
                             <a href="<?= route('dashboard',$page->link()) ?>"> <?= $page->link() ?> </a>
                         </li>
                     <?php endforeach; ?>
-                    <li class="waves-effect"><a href="<?= route('dashboard',$this->data->pages->getNextPage()) ?>"><i class="material-icons">chevron_right</i></a></li>
+                    <li class="waves-effect"><a href="<?= route('dashboard',$this->pages->getNextPage()) ?>"><i class="material-icons">chevron_right</i></a></li>
                 </ul>
             </div>
             </div>

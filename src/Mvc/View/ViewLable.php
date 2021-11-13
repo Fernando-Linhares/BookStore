@@ -35,8 +35,16 @@ class ViewLable
 
     public function with($data): self
     {
-        $this->data = (object) $data;
+        foreach($data as $key =>$value){
+            $this->$key = $value;
+        }
+
         return $this;
+    }
+
+    public function __get($name)
+    {
+        return htmlentities($this->$name);
     }
 
     public function include(string $name)

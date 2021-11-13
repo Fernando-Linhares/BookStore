@@ -11,8 +11,5 @@ $router->post('/register','\App\Controllers\RegisterController:register');
 $router->get('/logout', '\App\Controllers\HomeController:abort');
 $router->get('/dashboard', '\App\Controllers\HomeController:index');
 $router->get('/{page}/dashboard', '\App\Controllers\HomeController:selectPage');
-$router->get('/{page}/back', '\App\Controllers\HomeController:backPage');
-$router->get('/{page}/next', '\App\Controllers\HomeController:nextPage');
-
-// $router->get('/dashboard/add', '\App\Controllers\HomeController:addBook');
+$router->get('/add', '\App\Controllers\BookController:create');
 $router->get('/', '\App\Controllers\AuthController:login');

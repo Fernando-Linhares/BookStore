@@ -15,8 +15,11 @@ function middlewares(): array
     return include '../config/middlewares.php';
 }
 
-function route(string $route, int|string $parameter)
+function route(string $route, null|int|string $parameter=null)
 {
+    if(is_null($parameter))
+        return URL.$route;
+
     return URL .$parameter.'/'.$route;
 }
 
