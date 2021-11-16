@@ -25,7 +25,7 @@ class BookRepository
         $this->bookscategories = new BooksCategories;
     }
 
-    public function getAllPaginated(int $limit, int $offset=0)
+    public function getAllPaginated(int $limit=10, int $offset=0)
     {
         return $this->bookscategories
         ->join(Book::class)
@@ -38,6 +38,11 @@ class BookRepository
     public function getPages(int $limit,$page): Pages
     {
         return new Pages($this->book->count(), $limit, $page);
+    }
+
+    public function create(object $request): bool
+    {
+        return true;
     }
 
     public function count()

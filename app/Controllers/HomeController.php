@@ -19,35 +19,30 @@ class HomeController extends BaseController
 
     public function index()
     {
-        $limit = 10;
+        $paginated = $this->repository->getAllPaginated();
 
-        $paginated = $this->repository->getAllPaginated($limit);
+        $data = [
+                'title' => 'homepage',
+                'books' => $paginated->getCollections(),
+                'user' => $this->session->getUser(),
+                'pages' => $paginated->getPages()
+            ];
 
-        return view(
-                'app/panel',
-                    [
-                        'title' => 'homepage',
-                        'books' => $paginated->getCollections(),
-                        'user' => $this->session->getUser(),
-                        'pages' => $paginated->getPages()
-                    ]
-                );
+        return view('app/panel', $data);
     }
 
     public function selectPage(int $page)
     {
-        $limit = 10;
-        $paginated = $this->repository->getAllPaginated($limit, $page);
+        $paginated = $this->repository->getAllPaginated(10, $page);
 
-        return view(
-                'app/panel',
-                    [
-                        'title' => 'homepage',
-                        'books' => $paginated->getCollections(),
-                        'user' => $this->session->getUser(),
-                        'pages' => $paginated->getPages()
-                    ]
-                );
+        $data = [
+            'title' => 'homepage',
+            'books' => $paginated->getCollections(),
+            'user' => $this->session->getUser(),
+            'pages' => $paginated->getPages()
+        ];
+
+        return view('app/panel', $data);
     }
  
     public function abort()

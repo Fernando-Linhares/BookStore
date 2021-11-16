@@ -36,7 +36,7 @@
         <div class="card-panel">
             <div>
                 <div >
-                    <a class="btn green" href="<?= route('/add') ?>">
+                    <a class="btn green" href="<?= route('add') ?>">
                         <i class="material-icons">add</i>
                     </a>    
                 </div>
