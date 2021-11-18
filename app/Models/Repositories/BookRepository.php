@@ -43,7 +43,14 @@ class BookRepository
 
     public function create(object $request): bool
     {
-        return true;
+        $request = $request->all();
+        dd($request);
+        $this->book->title = $request->title;
+        $this->book->setDescription($request->description);
+        $this->book->book_cover = $request->image;
+        $this->book->setAuthor($request->author);
+        $this->book->published_at = $request->date;
+        return $this->book->save;
     }
 
     public function count()

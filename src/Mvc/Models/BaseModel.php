@@ -9,7 +9,7 @@ use stdClass;
 abstract class BaseModel
 {
     public string $table;
-
+    
     public function save()
     {
         return $this->getAccessInstance($this->table)->create($this);
@@ -80,20 +80,9 @@ abstract class BaseModel
         return $loaded;
     }
 
-    public function with(string $foreign_key)
+    public function getLast()
     {
-        $all = $this->all();
-        $table = substr($foreign_key,0,-3).'s';
-        $classname = '\\App\\Models\\Entity\\'.ucfirst(substr($table,0,-1));
-
-        return array_map(
-            function($item)use($foreign_key, $table, $classname){
-                $attr = substr($table,0,-1);
-                $item->$attr = $this->getAccessInstance($table)->find($item->$foreign_key, $classname);
-                return $item;
-                }
-        ,$all);
-       
+        return end($this->getAccessInstance($this->table)->all(get_class($this)));
     }
 
     public function getQueryBuilder(string $table)

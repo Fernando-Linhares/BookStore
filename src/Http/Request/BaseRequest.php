@@ -22,7 +22,7 @@ abstract class BaseRequest
 
         if(is_match('(.*?[=|;].*)',$input))
             return $message->span('ERROR WHAT YOU WANTING DO? ('. $input.')');
-    
+
         return htmlspecialchars($input);
     }
 }

@@ -57,6 +57,7 @@
                 </div>
 
                 <div class=""><button class="btn" type="submit">save <i class="material-icons">save</i></button></div>
+                <?= tokenCSRF() ?>
             </form>
         </div>
     </div>

@@ -17,12 +17,13 @@ class BooksController extends BaseController
             'authors'=> $this->repository->getAllAuthors(),
             'categories'=> $this->repository->getAllCategories()
             ];
+
         return view('app/book/create',$data);
     }
 
     public function store(Request $request)
     {
-        dd($request);
+        $this->repository->create($request);
         if($this->repository->create($request))
             return view('app/book/created');
 
