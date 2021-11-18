@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Document</title>
-    <?= $this->getDependences() ?>
+   <?= $this->getDependences() ?>
 </head>
 <body style="background: rgba(0,0 ,0,0.100 );">
     <div class="container">
@@ -17,12 +17,28 @@
                     <input type="text" name="title" id="title">
                 </div>
                 <div>
-                    <label for="">category</label>
-                    <input type="text" name="" id="">
+                    <h5>Categories</h5>
+                    <?php foreach($this->categories as $category): ?>
+                        <div>
+                            <label for="<?= $category->name ?>">
+                                <input type="checkbox" name="<?= $category->name ?>" id="<?= $category->name ?>">
+                                <span>
+                                    <?= $category->name ?>
+                                </span>
+                            </label>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
                 <div>
-                    <label for="">author</label>
-                    <input type="text">
+                    <h5>Author</h5>
+                    <?php foreach($this->authors as $author): ?>
+                        <div>
+                            <label for="<?= $author->getName() ?>">
+                                <input type="checkbox" name="<?= $author->getName() ?>" id="<?= $author->getName() ?>">
+                                <span><?= $author->getName() ?></span>
+                            </label>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
                 <div class="row">
                     <div class="col s3">

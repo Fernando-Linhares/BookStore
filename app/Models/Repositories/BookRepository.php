@@ -17,11 +17,12 @@ class BookRepository
     private Book $book;
     private Author $author;
     private BooksCategories $bookscategories;
+    private Category $categories;   
 
-    public function __construct()
-    {
-        $this->author = new Author;
+    public function __construct(){
         $this->book = new Book;
+        $this->author = new Author;
+        $this->categories = new Category;
         $this->bookscategories = new BooksCategories;
     }
 
@@ -60,9 +61,14 @@ class BookRepository
         return $this->book->find($id);
     }
 
-    public function getAllWithAuthors()
+    public function getAllAuthors()
     {
-        return $this->book->with('author_id');
+        return $this->author->all();
+    }
+
+    public function getAllCategories()
+    {
+        return $this->categories->all();
     }
 
     public function getAuthor()
