@@ -23,7 +23,6 @@ class BooksController extends BaseController
 
     public function store(Request $request)
     {
-        $this->repository->create($request);
         if($this->repository->create($request))
             return view('app/book/created');
 

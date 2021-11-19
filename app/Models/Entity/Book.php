@@ -30,7 +30,7 @@ class Book extends BaseModel
                return $this->description_id = $description->getLast()->id;
 
         }catch(\Exception $exception){
-            throw $exception->getMessage();
+            echo $exception->getMessage();
         }
     }
 
@@ -46,7 +46,7 @@ class Book extends BaseModel
     
         }catch(\Exception $exception)
         {
-            throw $exception->getMessage();
+            echo $exception->getMessage();
         }
     }
 }

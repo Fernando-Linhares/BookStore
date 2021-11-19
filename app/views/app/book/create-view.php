@@ -21,7 +21,7 @@
                     <?php foreach($this->categories as $category): ?>
                         <div>
                             <label for="<?= $category->name ?>">
-                                <input type="checkbox" name="<?= $category->name ?>" id="<?= $category->name ?>">
+                                <input type="checkbox" name="category" value="<?= $category->name ?>" id="<?= $category->name ?>">
                                 <span>
                                     <?= $category->name ?>
                                 </span>
@@ -34,7 +34,7 @@
                     <?php foreach($this->authors as $author): ?>
                         <div>
                             <label for="<?= $author->getName() ?>">
-                                <input type="checkbox" name="<?= $author->getName() ?>" id="<?= $author->getName() ?>">
+                                <input type="checkbox" name="author" value="<?= $author->getName() ?>" id="<?= $author->getName() ?>">
                                 <span><?= $author->getName() ?></span>
                             </label>
                         </div>
@@ -43,7 +43,7 @@
                 <div class="row">
                     <div class="col s3">
                         <label for="">published in</label>
-                        <input type="date" name="" id="">
+                        <input type="date" name="date" id="">
                     </div>
                     <div class="col s3">
                         <label for="image" class="btn padding">image</label>

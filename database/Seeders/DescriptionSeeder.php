@@ -11,7 +11,6 @@ class DescriptionSeeder extends Seeder
             foreach(get_from_file('../dbitems.php',"description") as $data){
                 $instance = new Description;
                 $instance->content = $data['content'];
-                $instance->book_id = $data['book_id'];
                 $instance->save();
             }
     }

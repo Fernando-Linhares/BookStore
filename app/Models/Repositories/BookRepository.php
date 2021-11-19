@@ -44,13 +44,18 @@ class BookRepository
     public function create(object $request): bool
     {
         $request = $request->all();
-        dd($request);
         $this->book->title = $request->title;
         $this->book->setDescription($request->description);
         $this->book->book_cover = $request->image;
         $this->book->setAuthor($request->author);
         $this->book->published_at = $request->date;
-        return $this->book->save;
+        if($this->book->save()){
+            $category_id = $this->categories->where('name',$request->category)->id;
+            $this->bookscategories->book_id = $this->book->getLast()->id;
+            $this->bookscategories->category_id = $category_id;
+            return $this->bookscategories->save();
+        }
+
     }
 
     public function count()
