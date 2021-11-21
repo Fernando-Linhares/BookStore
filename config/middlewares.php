@@ -1,4 +1,7 @@
 <?php
+
 return [
-    Application\Main\Middleware\Handlers\HandlerRoute::class
+    Application\Middleware\Handlers\RequestMiddleware::class,
+    Application\Middleware\Handlers\RouterMiddleware::class,
+    Application\Middleware\Handlers\OutputMiddleware::class,
 ];

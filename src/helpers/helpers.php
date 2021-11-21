@@ -4,10 +4,10 @@ include __DIR__.'/appinfo.php';
 include __DIR__.'/database.php';
 include __DIR__.'/csrftoken.php';
 
-function view(string $name,$data=null): void
+function view(string $name,$data=null)
 {
     $views = new Application\Mvc\View\ViewLable;
-    $views->setView($name)->with($data)->render();
+    return $views->setView($name)->with($data)->render();
 }
 
 function middlewares(): array
@@ -26,12 +26,6 @@ function route(string $route, null|int|string $parameter=null)
 function assets($file): string
 {
     return URL.$file;
-}
-
-function execute_app(\Application\Main\Middleware\HandlerInterface $routine)
-{
-    $routine = new $routine();
-    return $routine->handle();
 }
 
 function hasAnyUser(): bool

@@ -16,3 +16,4 @@ define('URL','http://localhost:8000/');
 define('KEY',env('key'));
 define('NONCE',temp('nonce'));
 define('TEMP_PATH', path('temp/'));
+define('VOID_STRING', '');

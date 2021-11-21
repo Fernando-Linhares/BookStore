@@ -19,6 +19,7 @@ class HomeController extends BaseController
 
     public function index()
     {
+        try{
         $paginated = $this->repository->getAllPaginated();
 
         $data = [
@@ -28,7 +29,12 @@ class HomeController extends BaseController
                 'pages' => $paginated->getPages()
             ];
 
+            
         return view('app/panel', $data);
+        }catch(\Exception $exception)
+        {
+            echo $exception->getMessage();
+        }
     }
 
     public function selectPage(int $page)

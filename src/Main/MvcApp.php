@@ -8,6 +8,6 @@ class MvcApp
      */
     public static function render()
     {
-        Middleware\Middleware::load();
+        return (new Application)->load();
     }
 }

@@ -14,3 +14,8 @@ function appname(): string
 
     return $appname;
 }
+
+function get_all_middlewares(): array
+{
+    return require '../config/middlewares.php';
+}

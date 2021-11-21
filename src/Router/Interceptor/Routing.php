@@ -19,12 +19,13 @@ class Routing
         $uri = new URI;
     
         if(!$uri->routeMatch($this->route)) return;
-            
 
         if(!$uri->methodMatch($this->method)) return;
 
         $caller = new Caller;
 
-        return $caller->resolve($action);
+        $response =  $caller->resolve($action);
+
+        $GLOBALS['response'] = $response;
     }
 }

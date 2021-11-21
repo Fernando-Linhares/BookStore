@@ -29,8 +29,7 @@ class ViewLable
 
     public function render()
     {
-        $this->content = include $this->getView();
-        return;
+        return include $this->getView();
     }
 
     public function with($data): self
