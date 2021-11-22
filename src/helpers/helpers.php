@@ -4,7 +4,7 @@ include __DIR__.'/appinfo.php';
 include __DIR__.'/database.php';
 include __DIR__.'/csrftoken.php';
 
-function view(string $name,$data=null)
+function view(string $name,$data=null):Application\Mvc\View\ViewLable
 {
     $views = new Application\Mvc\View\ViewLable;
     return $views->setView($name)->with($data)->render();
