@@ -34,9 +34,9 @@ class ViewLable
 
     public function with($data): self
     {
-        foreach($data as $key =>$value){
-            $this->$key = $value;
-        }
+        if(isset($data))
+            foreach($data as $key =>$value)
+                $this->$key = $value;
 
         return $this;
     }

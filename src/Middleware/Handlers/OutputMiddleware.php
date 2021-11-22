@@ -7,6 +7,6 @@ class OutputMiddleware implements MiddlewareInterface
 {
     public function handle(mixed $request, mixed $response, \Closure $next)
     {
-        echo $next($request,$response);
+        return $next($request,$response);
     }
 }

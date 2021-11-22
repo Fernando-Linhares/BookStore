@@ -22,8 +22,6 @@ class Has
     public function hasOne()
     {
         $someResult = $this->pdo->query($this->query);
-        return $someResult->count >= 1;
+        return $someResult >= 1;
     }
-
-    
 }

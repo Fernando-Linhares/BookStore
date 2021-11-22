@@ -4,11 +4,11 @@ namespace Application\Middleware\Handlers;
 use Application\Middleware\MiddlewareInterface;
 use Closure;
 
-class RouterMiddleware implements MiddlewareInterface
+class DebugginMiddleware implements MiddlewareInterface
 {
     public function handle(mixed $request, mixed $response, Closure $next)
     {
-        require '../routes/routes.php';
+        if(DEBUG) ini_set('display_errors',1);
 
         return $next($request,$response);
     }

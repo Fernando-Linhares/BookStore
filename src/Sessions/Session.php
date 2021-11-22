@@ -3,12 +3,23 @@ namespace Application\Sessions;
 
 class Session
 {
+    private static bool $once;
+
     public function __construct()
     {
-        session_save_path('../temp/');
-        session_start();
+        $this->init();
     }
 
+    public function init(): void
+    {
+        if(empty(self::$once)){
+            session_save_path('../temp/');
+            session_start();
+            self::$once = true;
+        }
+
+        return;
+    }
     public function all(): object
     {
         return (object) $_SESSION;
