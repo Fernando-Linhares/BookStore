@@ -13,11 +13,14 @@ class RentalBookMigration extends BaseMigration implements Migrable
         //implements here your schema
         return $this->table("rental_book")
         ->id()
-        ->int('book_id')
-        ->int('costumer_id')
+        ->boolean('is_paided')
         ->date('rental_date')
+        ->int('book_id')
+        ->int('to_pay_id')
+        ->int('customer_id')
+        ->relation('customer_id')
         ->relation('book_id')
-        ->relation('costumer_id')
+        ->relation('to_pay_id')
         ->create();
     }
 

@@ -5,20 +5,17 @@ namespace Database\Migrations;
 use Application\Database\Migration\Migrable;
 use Application\Database\Migration\BaseMigration;
 
-class CostumersMigration extends BaseMigration implements Migrable
+class CustomersMigration extends BaseMigration implements Migrable
 {
 
     public function up()
     {
         //implements here your schema
-        return $this->table("costumers")
+        return $this->table("customers")
         ->id()
         ->string('first_name')
         ->string('last_name')
-        ->boolean('is_paid')
-        ->int('to_pay_id')
         ->int('addres_id')
-        ->relation('to_pay_id')
         ->relation('addres_id')
         ->create();
     }
@@ -26,7 +23,7 @@ class CostumersMigration extends BaseMigration implements Migrable
     public function down()
     {
         //drop here your schema
-        return $this->drop('costumers');
+        return $this->drop('customers');
     }
 }
     

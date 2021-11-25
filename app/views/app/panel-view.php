@@ -38,7 +38,7 @@
                 <div >
                     <a class="btn green" href="<?= route('add') ?>">
                         <i class="material-icons">add</i>
-                    </a>    
+                    </a>
                 </div>
                 <div class="green-text">
                     Add books

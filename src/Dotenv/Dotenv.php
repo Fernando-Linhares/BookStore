@@ -25,5 +25,4 @@ class Dotenv extends Regex
         $len = strlen($key) + 1;
         return substr($result,$len);
     }
-
 }

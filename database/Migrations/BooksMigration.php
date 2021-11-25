@@ -17,6 +17,7 @@ class BooksMigration extends BaseMigration implements Migrable
         ->string('book_cover')
         ->int('author_id')
         ->int('description_id')
+        ->int('amount')
         ->date('published_at')
         ->relation('description_id')
         ->relation('author_id')

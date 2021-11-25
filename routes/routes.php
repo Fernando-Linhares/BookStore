@@ -23,3 +23,9 @@ $router->get('/add', '\App\Controllers\BooksController:create');
 $router->post('/save-book','\App\Controllers\BooksController:store');
 
 $router->get('/', '\App\Controllers\AuthController:login');
+
+$router->get('/rentals','\App\Controllers\RentalController:index');
+
+$router->get('/actives', '\App\Controllers\RentalController:toPays');
+
+$router->get('/customers', '\App\Controllers\CustomerController:index');

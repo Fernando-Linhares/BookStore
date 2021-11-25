@@ -15,6 +15,7 @@ class BookSeeder extends Seeder
                 $instance->description_id = $data['description_id'];
                 $instance->author_id = $data['author_id'];
                 $instance->published_at = $data['published_at'];
+                $instance->amount = $data['amount'];
                 $instance->save();
             }
         

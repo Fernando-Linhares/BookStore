@@ -8,10 +8,13 @@ class AddressSeeder extends Seeder
 {
     public function update()
     {
-        foreach(generate('address') as $data){
-            $instance = new Address(...$data);
+        foreach(get_from_file('../dbitems.php','address') as $data){
+            $instance = new Address;
+            $instance->state = $data['state'];
+            $instance->street = $data['street'];
+            $instance->complement = $data['complement'];
+            $instance->house = $data['house'];
             $instance->save();
         }
     }
 }
-    

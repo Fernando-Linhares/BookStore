@@ -3,9 +3,9 @@
     <div class="nav-wrapper">
       <a href="#!" class="brand-logo"><?= appname() ?></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="sass.html">rentals</a></li>
-        <li><a href="badges.html">categories</a></li>
-        <li><a href="badges.html">customers</a></li>
+        <li><a href="<?= route('rentals') ?>">alugueis</a></li>
+        <li><a href="<?= route('actives') ?>">pendencias</a></li>
+        <li><a href="<?= route('customers') ?>">clientes</a></li>
       </ul>
     </div>
   </div>

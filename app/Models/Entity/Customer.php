@@ -4,7 +4,7 @@ namespace App\Models\Entity;
 
 use Application\Mvc\Models\BaseModel;
 
-class Costumer extends BaseModel
+class Customer extends BaseModel
 {
     public ?int $id = null;
     
@@ -12,11 +12,7 @@ class Costumer extends BaseModel
 
     public string $last_name;
 
-    public bool $is_paid;
+    public int $addres_id;
 
-    public int $to_pay_id;
-
-    public int $address_id;
-
-    public string $table = 'costumers';
+    public string $table = 'customers';
 }
