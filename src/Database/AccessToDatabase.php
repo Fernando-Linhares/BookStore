@@ -10,7 +10,6 @@ use Application\Database\Features\Has;
 use Application\Database\Features\RollBacker;
 use Application\Database\Features\Updator;
 use Application\Database\Features\Joiner;
-use Application\Pagination\Paginator;
 
 class AccessToDatabase
 {
@@ -45,7 +44,7 @@ class AccessToDatabase
         return PdoSingleton::getPdo(); 
     }
 
-    public function find(int $id, string $classname): ?array
+    public function find(int $id, string $classname): ?object
     {
         return $this->finder->find($id, $classname);
     }
@@ -55,7 +54,7 @@ class AccessToDatabase
         return $this->joiner->join($table);
     }
     
-    public function where(string $col, string $value, string $classname)
+    public function where(string $col, string $value, string $classname): ?object
     {
         return $this->finder->findWhere($col, $value, $classname);
     }
@@ -69,7 +68,6 @@ class AccessToDatabase
     {
         return $this->all->getAll($classname);
     }
-   
 
     public function count(): int
     {

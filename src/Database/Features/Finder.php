@@ -29,7 +29,7 @@ class Finder
 
         $fetch = new Fetch($statement);
 
-        return $fetch->fetchClass($classname);
+        return $fetch->fetchOne($classname);
     }
 
     public function findWhere(string $col, string $value, string $classname)
