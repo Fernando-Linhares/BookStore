@@ -12,5 +12,5 @@ class ToPay extends BaseModel
     
     public int $fees;
     
-    public string $table = 'to_pay';
+    public string $table = 'to_paies';
 }

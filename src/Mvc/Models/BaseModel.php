@@ -82,7 +82,10 @@ abstract class BaseModel
 
     public function getLast()
     {
-        return end($this->getAccessInstance($this->table)->all(get_class($this)));
+        $all = $this->getAccessInstance($this->table)->all(get_class($this));
+        $count =  $this->count();
+        $count--;
+        return $all[$count];
     }
 
     public function getQueryBuilder(string $table)

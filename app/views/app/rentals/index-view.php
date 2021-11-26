@@ -14,31 +14,40 @@
                 novo aluguel
             </button>
             <div id="form" style="display: none;" class="card-panel white">
-                <form method="post" action="">
+                <form method="post" action="<?= route('store/rental') ?>">
                 <div class="row">
                 <h5>book</h5>
                     <?php foreach($this->books as $book): ?>
                         <div>
                             <label for="<?= $book->title ?>">
-                                <input type="checkbox" name="book" value="<?= $book->title ?>" id="<?= $book->title ?>">
+                                <input type="checkbox" name="book" value="<?= $book->id ?>" id="<?= $book->title ?>">
                                 <span><?= $book->title ?></span>
                             </label>
                         </div>
                     <?php endforeach; ?>
                 </div>
                 <div class="row">
-                <h5>customer</h5>
+                <h5>Cliente</h5>
                     <?php foreach($this->customers as $customer): ?>
                         <div>
                             <label for="<?= $customer->getName() ?>">
-                                <input type="checkbox" name="book" value="<?= $customer->getName() ?>" id="<?= $customer->getName() ?>">
+                                <input type="checkbox" name="customer" value="<?= $customer->id ?>" id="<?= $customer->getName() ?>">
                                 <span><?= $customer->getName() ?></span>
                             </label>
                         </div>
                     <?php endforeach; ?>
                 </div>
+                <div>
+                    <h5>Data</h5>
+                <label for="">data</label>
+                        <input type="date" name="date" id="">
+                </div>
+                <div>
+                    <h5>Valor</h5>
+                    <input type="number" name="to_pay" id=""><span>R$</span>
+                </div>
 
-                <div class=""><button class="btn" type="submit">save <i class="material-icons">save</i></button></div>
+                <div class=""><button class="btn" type="submit">salvar <i class="material-icons">save</i></button></div>
                 <?= tokenCSRF() ?>
                 </form>
             </div>

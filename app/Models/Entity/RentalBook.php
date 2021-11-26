@@ -16,7 +16,7 @@ class RentalBook extends BaseModel
 
     public int $to_pay_id;
 
-    public int $costumer_id;
+    public int $customer_id;
 
     public string $table = 'rental_book';
 }

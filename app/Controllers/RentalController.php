@@ -31,9 +31,10 @@ class RentalController extends BaseController
     public function store(Request $request)
     {
         if($this->repository->store($request))
-            return view('app/rentals/created');
-        
-        return view('app/rentals/error');
+            return 'ok';
+            // return view('app/rentals/created');
+        return 'error';
+        // return view('app/rentals/error');
     }
 
     public function toPays()

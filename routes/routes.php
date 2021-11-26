@@ -29,3 +29,5 @@ $router->get('/rentals','\App\Controllers\RentalController:index');
 $router->get('/actives', '\App\Controllers\RentalController:toPays');
 
 $router->get('/customers', '\App\Controllers\CustomerController:index');
+
+$router->post('/store/rental', '\App\Controllers\RentalController:store');

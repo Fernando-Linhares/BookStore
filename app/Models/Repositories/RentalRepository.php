@@ -38,25 +38,18 @@ class RentalRepository
 
     public function store(object $request)
     {
-        try{
-            $this->to_pay-> $request->to_pay;
+            $request = $request->all();
+            $this->to_pay->value =  $request->to_pay;
+            $this->to_pay->fees = 2;
             $this->to_pay->save();
             $to_pay_id = $this->to_pay->getLast()->id;
 
-            $customer_id = $this->customer->find($request->customer_id)->id;
-            $book_id = $this->book->where('title', $request->book)->id;
- 
-            $this->rental->is_paided = false;
+            $this->rental->is_paided = 'false';
             $this->rental->rental_date = $request->date;
-            $this->rental->book_id = $book_id;
-            $this->rental->customer_id = $customer_id;
+            $this->rental->book_id = $request->book;
+            $this->rental->customer_id = (int) $request->customer;
             $this->rental->to_pay_id = $to_pay_id;
 
             return $this->rental->save();
-
-        }catch(\Exception $except)
-        {
-            $this->message->span($except->getMessage());
-        }
     }
 }

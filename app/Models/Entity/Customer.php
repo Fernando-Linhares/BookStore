@@ -15,4 +15,9 @@ class Customer extends BaseModel
     public int $addres_id;
 
     public string $table = 'customers';
+
+    public function getName()
+    {
+        return $this->first_name . '  '. $this->last_name;
+    }
 }
