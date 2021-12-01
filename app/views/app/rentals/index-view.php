@@ -8,9 +8,12 @@
     <?= $this->getDependences() ?>
 </head>
 <body style="background-color: rgb(230,230,230);">
+ <div class="container">
+     <a href="<?= route('dashboard') ?>" class="btn red"> <i class="material-icons">arrow_back</i></a>
+ </div>
     <div class="container">
         <div class="card-panel white">
-            <button class="btn green darken-3">
+            <button id="button_green"class="btn green darken-3">
                 novo aluguel
             </button>
             <div id="form" style="display: none;" class="card-panel white">
@@ -55,11 +58,38 @@
     </div>
     <div class="container">
         <div class="card-panel white">
-            <button class="btn red darken-3">
+            <button id="button_red" class="btn red darken-3">
                 pendencias
             </button>
             <div  style="display: none;" id="table">
-                <table>table</table>
+                <table>
+                    <thead>
+                        <th>cliente</th>
+                        <th>livro</th>
+                        <th>vencimento</th>
+                        <th>valor</th>
+                    </thead>
+                    <?php foreach($this->rentals as $rental): ?>
+                        <tr 
+                            <?php if($rental->expired()): ?>
+                                class="red-text"
+                            <?php endif; ?>
+                        >
+                            <td>
+                                <?= $rental->getCustomerName() ?>
+                            </td>
+                            <td>
+                                <?= $rental->getBookTitle() ?>
+                            </td>
+                            <td>
+                                <?= $rental->getDateLimit() ?>
+                            </td>
+                            <td>
+                                <?= $rental->getToPayValue() ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
             </div>
         </div>
     </div>
@@ -69,8 +99,8 @@
 
         flagForm = false;
         flagTable = false;
-        buttonGreen = document.querySelector('.btn.green');
-        buttonRed = document.querySelector('.btn.red');
+        buttonGreen = document.querySelector('#button_green');
+        buttonRed = document.querySelector('#button_red');
         form = document.querySelector('#form');
         table = document.querySelector('#table');
 

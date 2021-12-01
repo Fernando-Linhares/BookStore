@@ -69,7 +69,7 @@
                                     <button class="btn red"><?= $book->getCategory() ?></button>
                                 </div>
                                 <div class="card-action"> 
-                                <a  href="/rental/<?= $book->getBookId() ?>">rental</a>
+                                <a  href="<?= route('rental',$book->getBookId()) ?>">rental</a>
                                 </div>
                             </div>
                             </div>

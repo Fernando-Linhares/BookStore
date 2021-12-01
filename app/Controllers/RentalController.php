@@ -22,7 +22,8 @@ class RentalController extends BaseController
         $data = [
             'title'=>'alugueis',
             'customers'=>$this->repository->getCustomers(),
-            'books'=>$this->repository->getBooks()
+            'books'=>$this->repository->getBooks(),
+            'rentals'=>$this->repository->getRentals()
         ];
 
         return view('app/rentals/index',$data);
@@ -30,15 +31,21 @@ class RentalController extends BaseController
 
     public function store(Request $request)
     {
-        if($this->repository->store($request))
-            return 'ok';
-            // return view('app/rentals/created');
-        return 'error';
-        // return view('app/rentals/error');
+        dd($request->all());
+        if($this->repository->store($request->all()))
+            return view('app/rentals/created');
+
+        return view('app/rentals/error');
     }
 
-    public function toPays()
+    public function onBook(int $id)
     {
-        
+        $data = [
+            'book'=>$this->repository->findBook($id),
+            'customers'=>$this->repository->getCustomers(),
+            'title'=>'aluguel'
+        ];
+
+        return view('app/rentals/book', $data);
     }
 }

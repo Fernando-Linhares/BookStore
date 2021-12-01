@@ -27,6 +27,8 @@ class Finder
 
         $statement->bindValue(1, $id, \PDO::PARAM_INT);
 
+        $statement->execute();
+
         $fetch = new Fetch($statement);
 
         return $fetch->fetchOne($classname);

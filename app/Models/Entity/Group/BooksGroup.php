@@ -1,8 +1,6 @@
 <?php
 namespace App\Models\Entity\Group;
 
-use DateTime;
-
 class BooksGroup
 {
     public int $id;
@@ -53,6 +51,6 @@ class BooksGroup
 
     public function getPublished(): string
     {
-        return date_format(new DateTime($this->published_at), 'd/m/Y');
+        return date_format(new \DateTime($this->published_at), 'd/m/Y');
     }
 }

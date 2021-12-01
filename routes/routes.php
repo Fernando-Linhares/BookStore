@@ -4,7 +4,7 @@ use \Application\Router\Route;
 
 $router = new Route;
 
-$router->get('/{id}/rental','\App\Controllers\HomeController:select');
+$router->get('/{id}/rental','\App\Controllers\RentalController:onBook');
 
 $router->get('/create/book_store','\App\Controllers\RegisterController:createUser');
 
@@ -31,3 +31,4 @@ $router->get('/actives', '\App\Controllers\RentalController:toPays');
 $router->get('/customers', '\App\Controllers\CustomerController:index');
 
 $router->post('/store/rental', '\App\Controllers\RentalController:store');
+

@@ -7,7 +7,7 @@ use App\Models\Entity\{
     RentalBook,
     ToPay
 };
-use Application\Messages\BrowserMessager;
+use App\Models\Entity\Group\RentalGroup;
 
 class RentalRepository
 {
@@ -15,15 +15,13 @@ class RentalRepository
     private Customer $customer;
     private RentalBook $rental;
     private ToPay $to_pay;
-    private BrowserMessager $message;
 
     public function __construct()
     {
-        $this->message = new BrowserMessager;
-        $this->to_pay = new ToPay;
         $this->book = new Book;
         $this->customer = new Customer;
         $this->rental = new RentalBook;
+        $this->to_pay = new ToPay;
     }
 
     public function getCustomers()
@@ -31,14 +29,27 @@ class RentalRepository
         return $this->customer->all();
     }
 
+    public function findBook(int $id): Book
+    {
+        return $this->book->find($id);
+    }
+
     public function getBooks()
     {
         return $this->book->all();
     }
 
+    public function getRentals()
+    {
+        return $this->rental
+        ->join(Book::class)
+        ->join(Customer::class)
+        ->join(ToPay::class)
+        ->get(RentalGroup::class);
+    }
+
     public function store(object $request)
     {
-            $request = $request->all();
             $this->to_pay->value =  $request->to_pay;
             $this->to_pay->fees = 2;
             $this->to_pay->save();
