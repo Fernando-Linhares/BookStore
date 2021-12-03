@@ -1,13 +1,19 @@
 <?php
 
+use Application\Mvc\View\Compactor;
+
 include __DIR__.'/appinfo.php';
 include __DIR__.'/database.php';
 include __DIR__.'/csrftoken.php';
 
-function view(string $name,$data=null):Application\Mvc\View\ViewLable
+function view(string $name,$data=null): Application\Mvc\View\View
 {
-    $views = new Application\Mvc\View\ViewLable;
-    return $views->setView($name)->with($data)->render();
+    $views = new Application\Mvc\View\View;
+    $views->setAddress($name);
+
+    $views->with($data);
+    
+    return $views;
 }
 
 function middlewares(): array
@@ -102,4 +108,27 @@ function nonce_regenerate()
 function temp(?string $file=null)
 {
     return file_get_contents('../temp/'.$file);
+}
+
+function render(string $view, Compactor $data): void
+{
+    if($data->has()){
+       $data = $data->open();
+       extract($data, EXTR_PREFIX_SAME, 'app');
+    }
+
+    include $view;
+}
+
+function import(string $name, mixed $data=null): void
+{
+    $data = new Compactor($data);
+    $name = "../app/views/$name.php";
+    render($name, $data);
+}
+
+function dependences(): void
+{
+    foreach(DEPENDENCES as $dependence)
+        echo $dependence;
 }

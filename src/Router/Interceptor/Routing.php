@@ -14,7 +14,7 @@ class Routing
        $this->method = $method;
     }
 
-    public function call(string $action)
+    public function call(string $action): void
     {
         $uri = new URI;
     

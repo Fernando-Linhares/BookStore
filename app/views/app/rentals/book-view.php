@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $this->title ?></title>
-    <?= $this->getDependences() ?>
+    <title><?= $title ?></title>
+    <?= dependences() ?>
 </head>
 <body style="background-color: rgb(230,230,230);">
  <div class="container">
@@ -15,18 +15,18 @@
         <div class="card-panel white">
             <div class="card-panel white">
                 <form method="post" action="<?= route('store/rental') ?>">
-                <input type="hidden" value="<?= $this->book->id ?>" name="book">
+                <input type="hidden" value="<?= $book->id ?>" name="book">
                 <div class="row">
                 <h5>book</h5>
                     <div class="col s12 m7">
                             <div class="card">
                             <div class="card-image">
-                                <img src="<?= route($this->book->book_cover) ?>">
+                                <img src="<?= route($book->book_cover) ?>">
                             </div>
                             <div class="card-stacked">
                                 <div class="card-content">
                                     <h4>
-                                        <?= $this->book->title ?>
+                                        <?= $book->title ?>
                                     </h4>
                                 </div>
                             </div>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="row">
                 <h5>Cliente</h5>
-                    <?php foreach($this->customers as $customer): ?>
+                    <?php foreach($customers as $customer): ?>
                         <div>
                             <label for="<?= $customer->getName() ?>">
                                 <input type="checkbox" name="customer" value="<?= $customer->id ?>" id="<?= $customer->getName() ?>">

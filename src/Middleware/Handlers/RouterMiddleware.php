@@ -10,6 +10,8 @@ class RouterMiddleware implements MiddlewareInterface
     {
         require '../routes/routes.php';
 
-        return $next($request,$response);
+        $response = $GLOBALS['response'];
+
+        return $next($request, $response);
     }
 }

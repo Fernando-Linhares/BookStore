@@ -1,14 +1,20 @@
 <?php
+
 namespace Application\Mvc\View;
 
 class Compactor
 {
     public function __construct(
-        private array $data
+        private ?array $data=null
     ){}
 
-    public function open(): void
+    public function open()
     {
-        extract($this->data, EXTR_PREFIX_SAME);
+        return $this->data;
+    }
+
+    public function has(): bool
+    {
+        return isset($this->data);
     }
 }
