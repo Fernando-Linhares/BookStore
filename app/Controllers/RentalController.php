@@ -31,7 +31,6 @@ class RentalController extends BaseController
 
     public function store(Request $request)
     {
-        dd($request->all());
         if($this->repository->store($request->all()))
             return view('app/rentals/created');
 
