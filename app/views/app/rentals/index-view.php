@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $this->title ?></title>
-    <?= $this->getDependences() ?>
+    <title><?= $title ?></title>
+    <?= dependences() ?>
 </head>
 <body style="background-color: rgb(230,230,230);">
  <div class="container">
@@ -20,7 +20,7 @@
                 <form method="post" action="<?= route('store/rental') ?>">
                 <div class="row">
                 <h5>book</h5>
-                    <?php foreach($this->books as $book): ?>
+                    <?php foreach($books as $book): ?>
                         <div>
                             <label for="<?= $book->title ?>">
                                 <input type="checkbox" name="book" value="<?= $book->id ?>" id="<?= $book->title ?>">
@@ -31,7 +31,7 @@
                 </div>
                 <div class="row">
                 <h5>Cliente</h5>
-                    <?php foreach($this->customers as $customer): ?>
+                    <?php foreach($customers as $customer): ?>
                         <div>
                             <label for="<?= $customer->getName() ?>">
                                 <input type="checkbox" name="customer" value="<?= $customer->id ?>" id="<?= $customer->getName() ?>">
@@ -69,7 +69,7 @@
                         <th>vencimento</th>
                         <th>valor</th>
                     </thead>
-                    <?php foreach($this->rentals as $rental): ?>
+                    <?php foreach($rentals as $rental): ?>
                         <tr 
                             <?php if($rental->expired()): ?>
                                 class="red-text"
