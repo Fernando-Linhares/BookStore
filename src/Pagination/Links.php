@@ -11,7 +11,7 @@ class Links
 
     public function link()
     {
-        return $this->page / $this->limit;
+        return $this->page;
     }
 
     public function isSelected()

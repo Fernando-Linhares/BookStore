@@ -1,14 +1,16 @@
 <?php
 
 use Application\Mvc\View\Compactor;
+use  Application\Mvc\View\View;
 
 include __DIR__.'/appinfo.php';
 include __DIR__.'/database.php';
 include __DIR__.'/csrftoken.php';
 
-function view(string $name,$data=null): Application\Mvc\View\View
+function view(string $name, mixed $data=null): View
 {
-    $views = new Application\Mvc\View\View;
+    $views = new View;
+
     $views->setAddress($name);
 
     $views->with($data);

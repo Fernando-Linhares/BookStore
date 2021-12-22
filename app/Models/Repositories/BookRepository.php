@@ -33,7 +33,7 @@ class BookRepository
         ->join(Author::class)
         ->join(Category::class)
         ->join(Description::class)
-        ->paginate($limit, $offset,new Book ,BooksGroup::class);
+        ->paginate($limit, $offset, new Book ,BooksGroup::class);
     }
 
     public function getPages(int $limit,$page): Pages

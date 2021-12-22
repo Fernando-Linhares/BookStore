@@ -28,12 +28,6 @@ class All
         return count($fetch->fetchAll());
     }
 
-    public function paginate(int $limit ,int $offset)
-    {
-        $query = Paginator::paginate($this->builder, $limit, $offset);
-        dd($query);
-    }
-
     public function getAll(string $classname)
     {
         $statement = $this->pdo->prepare($this->query);

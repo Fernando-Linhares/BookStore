@@ -24,6 +24,8 @@ class AuthController extends BaseController
         if($this->repository->verify($request))
             return redirect('/dashboard');
 
-        return die('error');// view('auth/error');
+        $errors = ['Fail to validate Longin or password'];
+
+        return view('auth/error',['errors' => $errors]);
     }
 }

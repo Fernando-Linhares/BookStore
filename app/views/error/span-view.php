@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ERROR</title>
-    <?= $this->getDependences() ?>
+    <?= dependences() ?>
 </head>
 <body>
     <div class="container">
         <div class="card-panel">
             <div class="red-text center-align">
-                <?= $this->data->message ?>
+                <?= $message ?>
             </div>
         </div>
     </div>

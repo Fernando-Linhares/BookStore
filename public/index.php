@@ -19,7 +19,6 @@ require __DIR__.'/../config/config.php';
 
 ini_set('display_errors',DEBUG);
 
-
 use Application\Main\MvcApp as Kernel;
 
 Kernel::render();

@@ -28,20 +28,20 @@ class Finder
         $statement->bindValue(1, $id, \PDO::PARAM_INT);
 
         $statement->execute();
-
+        
         $fetch = new Fetch($statement);
-
+        
         return $fetch->fetchOne($classname);
     }
-
+    
     public function findWhere(string $col, string $value, string $classname)
     {
         $query = (string) $this->builder->where($col.' = ?');
-
+        
         $statement = $this->pdo->prepare($query);
-
+        
         $statement->bindValue(1, $value, \PDO::PARAM_STR);
-
+        
         $statement->execute();
 
         $fetch = new Fetch($statement);

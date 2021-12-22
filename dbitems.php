@@ -58,6 +58,22 @@ return [
          ],
          [
             'title' =>'Harry Potter e a pedra filosofal',
+            'book_cover'=> 'assets/images/harryporter1.png',
+            'description_id'=>1,
+             'author_id'=>1,
+             'amount'=>10,
+             'published_at'=>'1998-02-23'
+         ],
+         [
+             'title' =>'Harry e a câmara secreta',
+             'book_cover'=> 'assets/images/harryporter2.png',
+             'description_id'=>2,
+             'author_id'=>1,
+             'amount'=>10,
+             'published_at'=>'1998-02-23'
+          ],
+         [
+            'title' =>'Harry Potter e a pedra filosofal',
             'book_cover'=> 'assets/images/harryporter4.png',
             'description_id'=>7,
             'author_id'=>1,
@@ -68,6 +84,28 @@ return [
             'title' =>'Harry Potter e a pedra filosofal',
             'book_cover'=> 'assets/images/harryporter4.png',
             'description_id'=>8,
+            'author_id'=>1,
+            'amount'=>10,
+            'published_at'=>'1998-02-23'
+         ],
+         [
+            'title' =>'Harry Potter e a pedra filosofal',
+            'book_cover'=> 'assets/images/harryporter4.png',
+            'description_id'=>7,
+            'author_id'=>1,
+            'amount'=>10,
+            'published_at'=>'1998-02-23'
+         ],         [
+            'title' =>'Harry Potter e a pedra filosofal',
+            'book_cover'=> 'assets/images/harryporter4.png',
+            'description_id'=>7,
+            'author_id'=>1,
+            'amount'=>10,
+            'published_at'=>'1998-02-23'
+         ],         [
+            'title' =>'Harry Potter e a pedra filosofal',
+            'book_cover'=> 'assets/images/harryporter4.png',
+            'description_id'=>7,
             'author_id'=>1,
             'amount'=>10,
             'published_at'=>'1998-02-23'

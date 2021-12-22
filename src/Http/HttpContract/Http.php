@@ -19,10 +19,10 @@ class Http implements HttpInterface
             return $this->message->span('ERROR HTTP FORBIDEN EXPECTED TOKEN');
 
         $request = new RequestHttp;
-    
+
         foreach($_REQUEST as $key => $value)
         {
-            $request->$key = $request->safe($value);
+            $request->$key = $value;
         }
 
         if(!$request->validate())

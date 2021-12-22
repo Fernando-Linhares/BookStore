@@ -16,6 +16,7 @@ class Pages
 
         if($pagenext == 1)
             return $pagenext + 1;
+
         if($this->isFinal($pagenext))
             return $this->page;
 
@@ -25,7 +26,9 @@ class Pages
     private function isFinal(int $page)
     {
         $end = $this->total / $this->limit;
+
         $end = (int) $end;
+
         return $page > $end;
     }
 
@@ -39,19 +42,19 @@ class Pages
 
     public function getLinks()
     {
-        $all = range(0,$this->total, $this->limit);
+        $all = range(0, $this->getTotal());
 
         $limit = $this->limit;
         
         $selected = $this->page;
 
-        if($selected==0) $selected += 1;
+        if($selected < 1) $selected = 1;
 
         $collectionLinks = array_map(
 
             function($item)use($limit, $selected)
             {
-                $is_selected = $item == ($selected * $limit);
+                $is_selected = $item == $selected;
 
                 return new Links($item, $limit, $is_selected);
             }
@@ -61,4 +64,19 @@ class Pages
         return $collectionLinks;
     }
 
+    public function getTotal()
+    {
+        if($this->total <= $this->limit)
+            return 1;
+        
+        return $this->total / $this->limit;
+    }
+
+    public function __get($attribute)
+    {
+        if($attribute=='total');
+            return $this->getTotal();
+
+        return $this->attribute;
+    }
 }

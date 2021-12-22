@@ -12,8 +12,6 @@ class PaginationTest extends TestCase
      */
     public function get_paginated_itens()
     {
-        $querybuilder = (new QueryBuilder('books'))->select('*');
-        $itens =  Paginator::paginate($querybuilder, 2, 2);
-        return $this->assertCount(2, $itens);
+        
     }
 }

@@ -1,8 +1,8 @@
 #!/usr/bin/php
 <?php
-    
+
 require "src/helpers/helpers.php";
-require 'vendor/autoload.php';
+require "vendor/autoload.php";
 
 use Application\Messages\ShellMessager;
 

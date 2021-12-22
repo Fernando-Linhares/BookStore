@@ -54,9 +54,14 @@ class AccessToDatabase
         return $this->joiner->join($table);
     }
     
-    public function where(string $col, string $value, string $classname): ?object
+    public function where(string $col, string $value, string $classname)
     {
         return $this->finder->findWhere($col, $value, $classname);
+    }
+
+    public function findSome(object $instance)
+    {
+        return $this->Has->hasThis($instance);
     }
 
     public function delete(int $id): bool

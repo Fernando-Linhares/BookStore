@@ -25,9 +25,9 @@ class Paginator
     public function getCollections(): array
     {
         if(isset($this->collections)) return $this->collections;
-    
+
         $query = ProductPaginator::paginate($this->builder, $this->limit, $this->offset);
-        
+
         $statement = $this->pdo->prepare((string) $query);
 
         $statement->execute();
@@ -35,7 +35,7 @@ class Paginator
         $fetch = new Fetch($statement);
 
         if(empty($this->classname)) return $fetch->fetchAll();
-    
+
         return $fetch->fetchClass($this->classname);
     }
 

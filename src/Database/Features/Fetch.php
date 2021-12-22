@@ -15,8 +15,8 @@ class Fetch
         return $this->statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function fetchOne(string $classname): object
-    {
+    public function fetchOne(string $classname)
+    {   
         return current($this->fetchClass($classname));
     }
 

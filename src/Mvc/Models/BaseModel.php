@@ -55,6 +55,14 @@ abstract class BaseModel
         return $this->getAccessInstance($this->table)->find($id, $classname);
     }
 
+    /**
+     * verify if the instance exists on database
+     */
+    public function exists()
+    {
+        $this->getAccessInstance($this->table)->findSome($this);
+    }
+
     public function make(\PDO $pdo): PDOStatement
     {
         $loaded = $this->load();

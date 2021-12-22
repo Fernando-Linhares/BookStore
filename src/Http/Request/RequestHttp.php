@@ -14,7 +14,7 @@ class RequestHttp extends BaseRequest
         if($name == 'token')
             $this->csrf_token = $value;
         else
-            $this->$name = $value;
+            $this->$name = $this->safe($value);
     }
 
     public function __get($name)
